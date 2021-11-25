@@ -4,18 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>LOKI 1.0</title>
+    <link rel="stylesheet" href="./index.css"/>
+        <!--load all Font Awesome styles -->
+    <script src="https://kit.fontawesome.com/a3efa45cc0.js" crossorigin="anonymous"></script>
+    <script src="./third/js/jquery-3.6.0.min.js"></script>
+
 </head>
-<body>
-    <form>
-        <label for="email">Entre com seu email</label>
-        <input name="email" type="email">
-        <br>
-        <label for="password">Entre com a sua senha</label>
-        <input name="password" type="password">
-        <br>
-        <button type="submit">Logar</button>
-    </form>
+<body>     
+    <div class="container">
+        <div class="content first-content">
+            <div class="first-column">
+                <h2 class="title title-primary">Bem vindo!</h2>
+                <p class="description description-primary">Ainda não possui conta?</p>
+                <p class="description description-primary">Clique abaixo!</p>
+                <button id="signin" class="btn btn-primary">Cadastrar</button>
+            </div><!--first column-->
+            <div class="second-column">
+                <h2 class="title title-secondary">Entre com sua conta</h2>
+                <p class="description description.secondary">Use um email válido para acesso</p>
+                <form class="form">
+                    <label class="label-input" for="">
+                        <i class="far fa-envelope icon-modify"></i>
+                        <input type="email" placeholder="email">
+                    </label>
+                    <label class="label-input" for="">
+                        <i class="fas fa-lock icon-modify"></i>
+                        <input type="password" placeholder="senha">
+                        </label>
+                        <a class="password" href="#">esqueceu sua senha?</a>
+                        <button class="btn btn-secondary">Acessar</button>
+                </form>
+                </div><!-- second column-->
+            </div><!--first content-->
     
+      <div class="content second-content">
+        <div class="first-column">
+            <h2 class="title title-primary">Olá, usuário!</h2>
+            <p class="description description-primary">Se já possui cadastro</p>
+            <p class="description description-primary">Entre com as info. de acesso</p>
+            <button id="signup" class="btn btn-primary">Entrar</button>
+        </div><!--first column-->
+        <div class="second-column">
+            <h2 class="title title-secondary">Crie sua conta</h2>
+            <p class="description description-secondary">Use um email válido para cadastro</p>
+            <form class="form" action="authenticateUser(this.form)">
+                <label class="label-input" for="">
+                    <i class="far fa-envelope icon-modify"></i>
+                    <input type="email" placeholder="email">
+                </label>
+                <label class="label-input" for="">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" placeholder="senha">
+                </label>
+                <button class="btn btn-secondary">Cadastrar</button>
+            </form>
+        </div><!-- second column-->   
+      </div><!--second content-->
+  </div><!--container-->
+  <script src="./index.js"></script>
 </body>
 </html>

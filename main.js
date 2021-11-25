@@ -1,8 +1,9 @@
 const { app, BrowserWindow} = require('electron')
+require('electron-reload')(__dirname);
 function criarJanela(){
     const janela = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1080,
+        height: 720,
         webPreferences: {
             nodeIntegration: true
         }
