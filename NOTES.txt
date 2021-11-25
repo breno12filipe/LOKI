@@ -1,0 +1,9 @@
+## Primeiros passos com electron
+    https://blog.betrybe.com/framework-de-programacao/electron/
+
+## Como rodar a aplicação neste ambiente de desenvolvimento
+    npm install
+    npm start
+
+## Como adicionar Jquery ao projeto electron
+    https://pt.stackoverflow.com/questions/259633/como-adicionar-jquery-no-electron
