@@ -9,5 +9,6 @@ function criarJanela(){
         }
     })
     janela.loadFile('index.html')
+    //janela.setFullScreen(true);
 }
 app.whenReady().then(criarJanela)
