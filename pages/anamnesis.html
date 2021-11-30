@@ -4,30 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="../third/jquery-3.6.0/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../third/Rich-Text-Editor-jQuery-RichText/src/richtext.min.css">
-    <script src="../third/Rich-Text-Editor-jQuery-RichText/src/jquery.richtext.min.js"></script>
-    <script src="./js/anamnesis.js"></script>
-    
-
+    <script src="../third/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.js"></script>
+    <script src="./js/loadModules.js"></script>
     <title>Document</title>
 </head>
 <body>
 
-    <div class="page-wrapper box-content">
-        <textarea id="rich-text-editor" name="example"></textarea>
+    <div id="content">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <div class="side-bar"></div>
+            <div class="page-wrapper box-content">
+                <h2 class="row d-flex justify-content-center">Digitar Anamnese</h2>
+                
+                <textarea id="rich-text-editor" name="example"></textarea>
+                <div class="row d-flex justify-content-center mt-2">
+                    <button class="btn btn-warning btn-lg">Limpar</button>
+                    &nbsp;
+                    <button class="btn btn-info btn-lg">Salvar</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <script>
-        
-    </script>
+    <script src="../third/Rich-Text-Editor-jQuery-RichText/src/jquery.richtext.min.js"></script>
+    <script src="./js/anamnesis.js"></script>
 </body>
 </html>
-
-
-
-
 
 
 

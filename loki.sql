@@ -13,7 +13,8 @@ CREATE TABLE Patient (
     email VARCHAR(320) NOT NULL,
     patient_address JSON,
     occupation VARCHAR(60),
-    comorbidities VARCHAR(280)
+    comorbidities VARCHAR(280),
+    log JSON NOT NULL
 )
 
 CREATE TABLE Anamnesis (
@@ -30,6 +31,7 @@ CREATE TABLE User (
     password VARCHAR(50) NOT NULL,
     /* role can be: root, admin, ordinary*/
     user_role VARCHAR(8)
+    log JSON NOT NULL
 )
 
 CREATE TABLE Exam (

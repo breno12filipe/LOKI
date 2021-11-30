@@ -22,9 +22,9 @@
     "electron": "^16.0.1"
   },
   "dependencies": {
-    "@editorjs/editorjs": "^2.22.2",
-    "@editorjs/header": "^2.6.2",
-    "@editorjs/list": "^1.6.2",
-    "electron-reload": "^2.0.0-alpha.1"
+    "bootstrap-icons": "^1.7.1",
+    "electron-reload": "^2.0.0-alpha.1",
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
   }
 }
