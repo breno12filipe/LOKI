@@ -42,10 +42,20 @@
         </div>
     </li>
 
-    <li class="nav-item"  id="exams-nav-item">
-        <a class="nav-link" href="../pages/exams.html">
-            <i class="bi bi-file-medical"></i>
-            <span>Exames</span></a>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExams" 
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-file-medical"></i>
+            <span class="font-weight-bold">Exames</span>
+        </a>
+
+        <div id="collapseExams" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Operações:</h6>
+                <a class="collapse-item" href="../pages/exams.html">Registrar</a>
+                <a class="collapse-item" href="#">Listar</a>
+            </div>
+        </div>
     </li>
 
     <li class="nav-item"  id="prescriptions-nav-item">
