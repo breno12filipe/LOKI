@@ -16,17 +16,27 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active" id="bioimpedance-nav-item">
+    <li class="nav-item" id="bioimpedance-nav-item">
         
         <a class="nav-link" href="../pages/bioimpedance.html">
             <i class="fas fa-file-medical"></i>
             <span>Bioimpedâncias</span></a>
     </li>
 
-    <li class="nav-item" id="anamnesis-nav-item">
-        <a class="nav-link" href="../pages/anamnesis.html"> 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAnamnesis" 
+            aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-file-medical"></i>
-            <span>Anamneses</span></a>
+            <span>Anamneses</span>
+        </a>
+
+        <div id="collapseAnamnesis" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Operações:</h6>
+                <a class="collapse-item" href="anamnesis.html">Registrar</a>
+                <a class="collapse-item" href="listAnamnesis.html">Listar</a>
+            </div>
+        </div>
     </li>
 
     <li class="nav-item"  id="exams-nav-item">
