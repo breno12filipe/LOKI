@@ -7,3 +7,8 @@
 
 ## Como adicionar Jquery ao projeto electron
     https://pt.stackoverflow.com/questions/259633/como-adicionar-jquery-no-electron
+
+## Alterado em sb-admin-2.css
+    Linha 10546:    Font-size:1.05rem;
+    Linha 10778:    padding: 0.5(...)
+    Linha 10507:    font-size: 1.00rem;
