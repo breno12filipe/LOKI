@@ -12,7 +12,7 @@ $("#anamnesis-step1-advance").click(function(){
     $("#anamnesis-step-1").hide();
     $("#anamnesis-step-btn-1").css('background-color', '#EFEFEF');
     $("#anamnesis-step-btn-2").css('background-color', '#58af9b');
-    $("#anamnesis-step-2").show();
+    $("#anamnesis-step-2").show(1000);
 })
 
 
@@ -37,3 +37,6 @@ $("#anamnesis-step2-recede").click(function(){
     $("#anamnesis-step-btn-2").css('background-color', '#EFEFEF');
     $("#anamnesis-step-2").hide();
 })
+
+// desta forma conseguimos pegar o conteúdo de dentro do editor de texto rico
+//console.log($("#editor")[0].innerHTML)
