@@ -9,25 +9,33 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-text mx-3">Angelus</div>
+        <div class="sidebar-brand-text mx-3 font-weight-bold">Angelus</div>
     </a>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item" id="bioimpedance-nav-item">
-        
-        <a class="nav-link" href="../pages/bioimpedance.html">
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBioimpedance" 
+            aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-file-medical"></i>
-            <span>Bioimpedâncias</span></a>
+            <span class="font-weight-bold">Bioimpedâncias</span>
+        </a>
+
+        <div id="collapseBioimpedance" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Operações:</h6>
+                <a class="collapse-item" href="bioimpedance.html">Registrar</a>
+                <a class="collapse-item" href="">Listar</a>
+            </div>
+        </div>
     </li>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAnamnesis" 
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-file-medical"></i>
-            <span>Anamneses</span>
+            <span class="font-weight-bold">Anamneses</span>
         </a>
 
         <div id="collapseAnamnesis" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -42,35 +50,31 @@
     <li class="nav-item"  id="exams-nav-item">
         <a class="nav-link" href="../pages/exams.html">
             <i class="fas fa-file-medical"></i>
-            <span>Exames</span></a>
+            <span class="font-weight-bold">Exames</span></a>
     </li>
 
     <li class="nav-item"  id="prescriptions-nav-item">
         <a class="nav-link" href="../pages/prescriptions.html">
             <i class="fas fa-file-medical"></i>
-            <span>Prescrições</span></a>
+            <span class="font-weight-bold">Prescrições</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" 
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-user"></i>
-            <span>Usuário</span>
+            <span class="font-weight-bold">Usuário</span>
         </a>
 
         <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Operações:</h6>
-                <a class="collapse-item" href="login.html">Sair</a>
                 <a class="collapse-item" href="register.html">Configurações</a>
+                <a class="collapse-item" onclick="exitDashboard()" href="#">Sair</a>
                 
             </div>
         </div>
-    </li>
-
-
-
-    
+    </li>   
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Sidebar Toggler (Sidebar) -->
