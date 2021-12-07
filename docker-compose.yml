@@ -16,7 +16,7 @@ services:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "brenoelfwow@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "baby123baby"
+      PGADMIN_DEFAULT_PASSWORD: "pgroot"
     ports:
       - "16543:80"
     depends_on:

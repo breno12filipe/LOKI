@@ -3,4 +3,3 @@ $( document ).ready(function() {
     // $('.top-bar').load("../components/topbar.html");
 
 })
-

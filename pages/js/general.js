@@ -5,7 +5,7 @@ $(".nav .nav-link").on("click", function(){
 
 
 function exitDashboard(){
-    exit = confirm("Deseja realmente sair do sistema?")
+    exit = confirm("Deseja realmente sair?");
 
     exit ? window.location="index.html" : ""
 }
