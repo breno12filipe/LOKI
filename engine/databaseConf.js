@@ -1,43 +1,11 @@
-const pg = require('pg');
+const { Client } = require('pg');
 
-const config = {
-    host: '<your-db-server-name>.postgres.database.azure.com',
-    // Do not hard code your username and password.
-    // Consider using Node environment variables.
-    user: '<your-db-username>',     
-    password: '<your-password>',
-    database: '<name-of-database>',
-    port: 16543,
-    ssl: true
-};
-
-const client = new pg.Client(config);
-
-client.connect(err => {
-    if (err) throw err;
-    else {
-        queryDatabase();
-    }
+const client = new Client({
+    user:'headmaster',
+    host:'localhost',
+    database:'loki',
+    password: 'baby123baby',
+    port: 5432
 });
 
-function queryDatabase() {
-    const query = `
-        DROP TABLE IF EXISTS inventory;
-        CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);
-        INSERT INTO inventory (name, quantity) VALUES ('banana', 150);
-        INSERT INTO inventory (name, quantity) VALUES ('orange', 154);
-        INSERT INTO inventory (name, quantity) VALUES ('apple', 100);
-    `;
-
-    client
-        .query(query)
-        .then(() => {
-            console.log('Table created successfully!');
-            client.end(console.log('Closed client connection'));
-        })
-        .catch(err => console.log(err))
-        .then(() => {
-            console.log('Finished execution, exiting now');
-            process.exit();
-        });
-}
+module.exports = client;
