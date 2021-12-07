@@ -32,8 +32,6 @@ class Patient{
     deletePatient(){
         // ...
     }
-
-
-
-
 }
+
+module.exports = Patient

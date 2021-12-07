@@ -1,3 +1,5 @@
+const pool = require('./_connection')
+
 class User{
     constructor(email, password, role, log){
         this.email = email;
@@ -46,6 +48,12 @@ class User{
             "creator": userAddress,
             "operation": "create_user"
         }
+
+        // createUserQuery = `INSERT INTO lokiuser (email, MD5(user_password), user_role, user_log) VALUES (${this.email}, ${this.password}, ${this.role}, ${this.log})`;
+        // pool.query(createUserQuery, (err, res) => {
+        //     console.log(err, res)
+        //     pool.end()
+        // })
     }
 
     listUsers(){
@@ -65,4 +73,6 @@ class User{
     }
 
 }
+
+module.exports = User
 

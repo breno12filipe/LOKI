@@ -1,0 +1,6 @@
+# LINKS Úteis
+
+https://www.postgresqltutorial.com/
+https://node-postgres.com/
+https://expressjs.com/
+https://www.w3schools.com/js/js_classes.asp
