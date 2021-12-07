@@ -51,13 +51,9 @@
 
                 <div id="bioimpedance-step-2" >
                     <h2 class="row d-flex justify-content-center font-weight-bold">Bioimpedância</h2>
-                    
-
-                    <div class="row d-flex justify-content-center font-weight-bold">
-                        
+                    <div class="row d-flex justify-content-center font-weight-bold" style="position: fixed;">
                         <input type="file" id="upload" hidden/>
-    
-                        <div id="parentEditor">
+                        <div id="parentEditor" >
                             <div id="painelEditor">
                                 <button class="btnColor" onclick="applyCommand('justifyLeft')"><i class="demo-icon icon-align-left"></i></button>
                                 <button class="btnColor" onclick="applyCommand('justifyCenter')"><i class="demo-icon icon-align-center"></i></button>
@@ -94,11 +90,11 @@
     
                             <div id="editor" contenteditable="true"></div>
                         </div>
-                    </div>
-                    <div class="row d-flex justify-content-center mt-2 mx-auto">
-                        <button class="btn btn-warning btn-lg" style="width:100px" id="bioimpedance-step2-recede">Voltar</button>
-                        &nbsp;
-                        <button class="btn btn-info btn-lg" id="bioimpedance-step2-advance">Próximo</button>
+                        <div class="row d-flex justify-content-center mt-2 mx-auto">
+                            <button class="btn btn-warning btn-lg" style="width:100px" id="bioimpedance-step2-recede">Voltar</button>
+                            &nbsp;
+                            <button class="btn btn-info btn-lg" id="bioimpedance-step2-advance">Próximo</button>
+                        </div>
                     </div>
                 </div>
 
