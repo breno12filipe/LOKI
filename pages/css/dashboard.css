@@ -1,0 +1,23 @@
+.sidebar{
+    width: 280px; 
+    height: 100%;
+    position:fixed;
+    background-color: #58af9b;
+}
+
+#sidebar-title{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color:#fff;
+    
+}
+
+#user-icon{
+    margin-left: 30%;
+    margin-top: 500px;
+    color:white;
+    cursor: pointer;
+}
+

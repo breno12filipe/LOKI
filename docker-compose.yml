@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  postgres-compose:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - "15432:5432"
+    volumes:
+      - /home/headmaster/Documents/LOKI/psql:/var/lib/postgresql/data 
+    networks: 
+      - postgres-compose-network
+      
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "brenoelfwow@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgroot"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-compose
+    networks:
+      - postgres-compose-network
+
+  # nodejs-engine:
+  #   container_name: nodejs
+  #   build: '.'
+  #   volumes:
+  #     - .:/home/headmaster/Documents/LOKIENG
+  #     - /home/headmaster/Documents/LOKIENG/node_modules
+
+  #   depends_on:
+  #     - postgres-compose
+  #   networks:
+  #     - postgres-compose-network
+  #   ports:
+  #     - '3333:3333'
+
+networks: 
+  postgres-compose-network:
+    driver: bridge

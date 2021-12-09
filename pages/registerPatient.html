@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar paciente</title>
+    <script src="../third/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <script src="../third/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"></script>
+    <link href="../third/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.css" rel="stylesheet">
+    <script src="../third/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+    <script src="js/registerPatient.js"></script>
+    
+</head>
+<body>
+    <div class="card ml-5 mr-5 mt-2 mb-5" >
+        <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">Cadastrar paciente</h5>
+
+                <form>
+                    <center>
+                        <div class="col-sm-4 text mt-5" align="center">
+                            <label for="nameInput">Nome completo</label>
+                            <input type="email" class="form-control emptyInput" id="nameInput" required placeholder="Nome completo">
+                        </div>
+                        <div class="col-sm-4 text mt-4" align="center">
+                            <label for="telInput">Numero de telefone</label>
+                            <input type="tel" class="form-control emptyInput" id="telInput" required placeholder="Número de telefone" maxlength="11">
+                        </div>
+                        <div class="col-sm-4 text mt-4" align="center">
+                            <label for="dtInput">Data de nascimento</label>
+                            <input class="form-control emptyInput" id="dtInput" required placeholder="dd/mm/aaaa" maxlength="11">
+                        </div>
+                        <div class="col-sm-4 text mt-4" align="center">
+                            <label for="CPFInput">CPF</label>
+                            <input class="form-control emptyInput" id="CPFInput" required placeholder="CPF" maxlength="11">
+                        </div>
+                        <div class="col-sm-4 text mt-4" align="center">
+                            <label for="RGInput">RG</label>
+                            <input class="form-control emptyInput" id="RGInput" required placeholder="RG" maxlength="11">
+                        </div>
+                    </center>
+                </form>
+
+                
+                  
+
+        </div>
+      </div>
+</body>
+</html>

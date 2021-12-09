@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <object type="text/html" style="width:100%;heihgt: 250px;" data="../components/sideBar.html">  -->
+    <title>Registrar bioimpedancia</title>
+    <script src="../third/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../third/Rich-Text-Editor-jQuery-RichText/src/richtext.min.css">
+    <script src="../third/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.js"></script>
+    <script src="./js/loadModules.js"></script>
+    <link rel="stylesheet" href="../third/loki-rich-text-editor/editor-de-texto-html/css/editor.css">
+    <link rel="stylesheet" href="../third/loki-rich-text-editor/editor-de-texto-html/css/icons.css">
+</head>
+<body>
+    <div id="content">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <div class="side-bar"></div>
+            <div id="bioimpedance-reg-content" class="page-wrapper" style="width:100%">
+                <img class="float-left ml-5 mt-4" src="img/nutri.png" style="width:80px; height:80px;left:0px;">
+                <div class="row d-flex justify-content-center mb-3 mt-1">
+                    <button id="bioimpedance-step-btn-1" class="rounded-circle border-0 btn-lg" style="background-color: #58af9b;">1</button>
+                    &nbsp;
+                    <button id="bioimpedance-step-btn-2" class="rounded-circle border-0 btn-lg" >2</button>
+                    &nbsp;
+                    <button id="bioimpedance-step-btn-3" class="rounded-circle border-0 btn-lg" >3</button>
+                </div>                
+                <div id="bioimpedance-step-1">
+                    <h2 class="row d-flex justify-content-center font-weight-bold">Dados iniciais</h2>
+                    <div class="card ml-5 mr-5">
+                        <div class="card-body">
+                            <div class="row">
+                                <label for="bioimpedance-title" class="font-weight-bold">Título da Bioimpedância</label>
+                                <input name="bioimpedance-title" type="text" class="form-control">
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <label for="bioimpedance-title" class="font-weight-bold">Descrição da Bioimpedância</label>
+                                <input name="bioimpedance-title" type="text" class="form-control">
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row d-flex justify-content-center">
+                                <button class="btn btn-info btn-lg" id="bioimpedance-step1-advance">Próximo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bioimpedance-step-2" >
+                    <h2 class="row d-flex justify-content-center font-weight-bold">Bioimpedância</h2>
+                    <div class="row d-flex justify-content-center font-weight-bold" style="position: fixed;">
+                        <input type="file" id="upload" hidden/>
+                        <div id="parentEditor" >
+                            <div id="painelEditor">
+                                <button class="btnColor" onclick="applyCommand('justifyLeft')"><i class="demo-icon icon-align-left"></i></button>
+                                <button class="btnColor" onclick="applyCommand('justifyCenter')"><i class="demo-icon icon-align-center"></i></button>
+                                <button class="btnColor" onclick="applyCommand('justifyRight')" ><i class="demo-icon icon-align-right"></i></button>
+                                <button class="btnColor" onclick="applyCommand('justifyFull')" ><i class="demo-icon icon-align-justify"></i></button>
+    
+                                <button class="btnColor" onclick="applyCommand('bold')"><i class="demo-icon icon-bold"></i></button>
+                                <button class="btnColor" onclick="applyCommand('italic')"><i class="demo-icon icon-italic"></i></button>
+                                <button class="btnColor" onclick="applyCommand('strikeThrough')"><i class="demo-icon icon-strike"></i></button>
+                                <button class="btnColor" onclick="applyCommand('underline')"><i class="demo-icon icon-underline"></i></button>
+    
+                                <button class="btnColor" onclick="applyCommand('outdent')"><i class="demo-icon icon-indent-left"></i></button>
+                                <button class="btnColor" onclick="applyCommand('indent')"><i class="demo-icon icon-indent-right"></i></button>
+                                
+                                <button class="btnColor" onclick="link()"><i class="demo-icon icon-link"  ></i></button>
+                                <button class="btnColor" onclick="applyCommand('redo')"><i class="demo-icon icon-ccw" ></i></button>
+                                <button class="btnColor" onclick="applyCommand('undo')"><i class="demo-icon icon-cw"  ></i></button>
+                                <label for="upload"><i class="demo-icon icon-picture"></i></label>
+                
+                                <i class="demo-icon icon-table"></i>
+    
+                                <button id="fontColor" class="btnColor">F</button>
+                                <button id="backColor" class="btnColor">B</button>
+                                <button id="paleta" class="jscolor {valueElement:null, value:'3c8dbc'}"></button>
+    
+                                <select type="text" id="inputFontSize" onchange="alterFont(this.value)" >
+                                    <option value="2">10 pt</option>
+                                    <option value="3">12 pt</option>
+                                    <option value="4">14 pt</option>
+                                    <option value="6">16 pt</option>
+                                    <option value="7">18 pt</option>
+                                </select>
+                            </div>
+    
+                            <div id="editor" contenteditable="true"></div>
+                        </div>
+                        <div class="row d-flex justify-content-center mt-2 mx-auto">
+                            <button class="btn btn-warning btn-lg" style="width:100px" id="bioimpedance-step2-recede">Voltar</button>
+                            &nbsp;
+                            <button class="btn btn-info btn-lg" id="bioimpedance-step2-advance">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bioimpedance-step-3" >
+                    <h2 class="row d-flex justify-content-center font-weight-bold">Salvar Bioimpedância</h2>
+                    <div class="card ml-5 mr-5">
+                        <div class="card-body">
+                            <p>Título da bioimpedância</p>
+                            <p>Descrição</p>
+                            <p>PDF</p> <!-- Dar opção de baixar como PDF-->
+                            <p>Data de registro</p>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2 mx-auto">
+                            <button class="btn btn-warning btn-lg" id="bioimpedance-step3-recede" style="width:100px" >Voltar</button>
+                            &nbsp;
+                            <button class="btn btn-success btn-lg" onclick="saveAnamnesis()" style="width:100px">Salvar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <script src="../third/Rich-Text-Editor-jQuery-RichText/src/jquery.richtext.min.js"></script>
+    <script src="./js/bioimpedance.js"></script>
+    <script src="../third/loki-rich-text-editor/editor-de-texto-html/js/jscolor.min.js"></script>
+    <script src="../third/loki-rich-text-editor/editor-de-texto-html/js/editor.js"></script>
+</body>
+</html>
