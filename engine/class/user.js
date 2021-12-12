@@ -9,7 +9,7 @@ class User{
         this.userAddress = userAddress;
     }
 
-    registerUser(){
+    async registerUser(){
         // USER VALIDATIONS...
 
         // Password validation
@@ -49,13 +49,14 @@ class User{
                                '${this.log}') 
                                ON CONFLICT DO NOTHING;`;
 
-        pool.query(createUserQuery, (err, res) => {
-            console.log(err, res)
-            pool.end();
-            return {"res": "User insert successfully"};
-            
-            
-        })
+        let response;
+        try{
+            response = await pool.query(createUserQuery)
+            return "User inserted successfully";
+        }catch(error){
+            return "Error while inserting user";
+        }
+        
 
     }
 
