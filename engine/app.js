@@ -44,13 +44,27 @@ app.post('/createUser', async (req, res) => {
 app.get('/listUsers', async (req, res) => {
   const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try {
-    let user = new User("", "", "", userAddress)
+    let user = new User("", "", "", userAddress);
     res.send(await user.listUsers());
   }catch(e){
-    res.send(e)
+    res.send(e);
   }
   next();
-    
+})
+
+/*
+  {
+    "user_id" : "1"
+  }
+*/
+app.get('/getUserByID', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let user = new User("", "", "", userAddress);
+    res.send(await user.getUserByID(req.body["user_id"]));
+  }catch(e){
+    res.send(e);
+  }
 })
 
 

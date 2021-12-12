@@ -56,8 +56,6 @@ class User{
         }catch(error){
             return "Error while inserting user";
         }
-        
-
     }
 
     async listUsers(){
@@ -71,8 +69,14 @@ class User{
     }
 
 
-    getUserByID(){
-        // ...
+    async getUserByID(userId){
+        let response;
+        try {
+            response = await pool.query(`SELECT * FROM lokiuser WHERE user_id = ${userId}`);
+            return response.rows;
+        }catch (error){
+            return "Error while returning user";
+        }
     }
 
     updateUser(){
