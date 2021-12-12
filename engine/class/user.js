@@ -58,6 +58,7 @@ class User{
         }
     }
 
+
     async listUsers(){
         let response;
         try {
@@ -83,8 +84,14 @@ class User{
         // ...
     }
 
-    deleteUser(){
-        // ...
+    async deleteUser(userId){
+        let response;
+        try {
+            response = await pool.query(`DELETE FROM lokiuser WHERE user_id = ${userId};`);
+            return "User deleted successfully"
+        }catch (error){
+            return "Error while deleting user";
+        }
     }
 
 }

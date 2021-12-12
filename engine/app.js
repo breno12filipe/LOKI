@@ -65,7 +65,25 @@ app.get('/getUserByID', async (req, res) => {
   }catch(e){
     res.send(e);
   }
+  next();
 })
+
+/*
+  {
+    "user_id" : "1"
+  }
+*/
+app.post('/deleteUser', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let user = new User("", "", "", userAddress);
+    res.send(await user.deleteUser(req.body["user_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  next();
+})
+
 
 
 app.listen(port, () => {
