@@ -26,18 +26,26 @@ app.get('/', (req, res) => {
 app.post('/createUser', (req, res) => {
   // let user = new User(req.body["email"], req.body["password"], req.body["role"]);
   // user.registerUser();
-
   let userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || // Recupera o IP de origem, caso a fonte esteja utilizando proxy
                      req.connection.remoteAddress || // Recupera o endereço remoto da chamada
                      req.socket.remoteAddress || // Recupera o endereço através do socket TCP
                      req.connection.socket.remoteAddress // Recupera o endereço através do socket da conexão
 
   let user = new User(req.body["email"], req.body["password"], req.body["role"], userAddress);
-  res.send(user.registerUser())
+  res.send(user.registerUser());
+  next();
+})
 
-
-
-  
+app.get('/listUsers', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try {
+    let user = new User("", "", "", userAddress)
+    res.send(await user.listUsers());
+  }catch(e){
+    res.send(e)
+  }
+  next();
+    
 })
 
 
