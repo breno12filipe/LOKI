@@ -68,6 +68,29 @@ app.get('/getUserByID', async (req, res) => {
   next();
 })
 
+
+/*
+  {
+    "email" : "johndoe@gmail.com",
+    "password": "123456",
+    "role": "root",
+    "user_id": 1
+  }
+*/
+app.post('/updateUser', async (req, res) =>{
+  let userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || // Recupera o IP de origem, caso a fonte esteja utilizando proxy
+                     req.connection.remoteAddress || // Recupera o endereço remoto da chamada
+                     req.socket.remoteAddress || // Recupera o endereço através do socket TCP
+                     req.connection.socket.remoteAddress // Recupera o endereço através do socket da conexão
+
+  try{
+    let user = new User(req.body["email"], req.body["password"], req.body["role"], userAddress);
+    res.send(await user.updateUser(req.body["user_id"]));
+  }catch(e){
+    res.send(e);
+  }
+})
+
 /*
   {
     "user_id" : "1"

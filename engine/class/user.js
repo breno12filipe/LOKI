@@ -80,8 +80,48 @@ class User{
         }
     }
 
-    updateUser(){
-        // ...
+    async updateUser(userId){
+        if (this.password.length < 8){
+            return "Password must contain at least 8 characters";
+        }
+
+        var validSpecialChar = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/
+        if (validSpecialChar.test(this.password) == false) {
+            return "Password must contain special characters";
+        }
+        
+        if (this.password.toLowerCase() == this.password){
+            return "Password must contain at least one Uppercase character";
+        }
+            
+        // Role validations
+        let validRoles = ['root', 'admin', 'ordinary'];
+
+        if (validRoles.indexOf(this.role) <= -1){
+            return "Role not valid!";
+        }
+
+        this.log = `{
+            "creation_date": "${new Date().toDateString()}",
+            "creator": "${this.userAddress}",
+            "operation": "create_user"
+        }`   
+
+        createUserQuery = ` UPDATE lokiuser
+                            SET email='${this.email}',
+                                user_password='${this.password}',
+                                user_role='${this.role}',
+                                user_log='${this.log}'
+                            WHERE user_id = ${userId}
+                        `
+        
+        try{
+            await pool.query(createUserQuery);
+            return "User updated successfully";
+        }catch(error){
+            return "Error while updating user";
+        }
+
     }
 
     async deleteUser(userId){
@@ -96,5 +136,4 @@ class User{
 
 }
 
-module.exports = User
-
+module.exports = User 
