@@ -13,23 +13,23 @@ class Patient{
         this.log = {"creation_date": new Date()}
     }
 
-    registerPatient(){
+    async registerPatient(){
         // ...
     }
 
-    listPatients(){
+    async listPatients(){
         // ...
     }
 
-    getPatientByID(){
+    async getPatientByID(){
         // ...
     }
 
-    updatePatient(){
+    async updatePatient(){
         // ...
     }
 
-    deletePatient(){
+    async deletePatient(){
         // ...
     }
 }

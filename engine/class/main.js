@@ -8,6 +8,7 @@ const User = require('./user')
 // must contain at least one special character
 // must contain at least 8 of the mentioned characters
 
-let user = new User('brenoelfwow@gmail.com', 'B@by123baby!', 'root');
+// let user = new User('brenoelfwow@gmail.com', 'B@by123baby!', 'root');
+let user = new User('sandyadrianesoares@gmail.com', 'Pequenina!', 'root')
 user.registerUser();
 
