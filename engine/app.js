@@ -107,6 +107,21 @@ app.post('/deleteUser', async (req, res) => {
   next();
 })
 
+app.post('/createUser', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let patient = new Patient(req.body["name"], req.body["phone"],
+                              req.body["birth_date"], req.body["CPF"],
+                              req.body["RG"], req.body["CEP"], req.body["email"],
+                              req.body["address"], req.body["occupation"], 
+                              req.body["comorbidities"], userAddress);
+    res.send(await patient.registerPatient());
+  }catch(e){
+    res.send(e);
+  }
+  next();
+})
+
 
 
 app.listen(port, () => {
