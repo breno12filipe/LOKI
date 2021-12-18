@@ -107,7 +107,8 @@ app.post('/deleteUser', async (req, res) => {
   next();
 })
 
-app.post('/createUser', async (req, res) => {
+// Not tested
+app.post('/createPatient', async (req, res) => {
   const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try{
     let patient = new Patient(req.body["name"], req.body["phone"],
@@ -116,6 +117,17 @@ app.post('/createUser', async (req, res) => {
                               req.body["address"], req.body["occupation"], 
                               req.body["comorbidities"], userAddress);
     res.send(await patient.registerPatient());
+  }catch(e){
+    res.send(e);
+  }
+  next();
+})
+
+app.get('/listPatients', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try {
+    let user = new User("", "", "", userAddress);
+    res.send(await user.listUsers());
   }catch(e){
     res.send(e);
   }
