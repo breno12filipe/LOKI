@@ -1,5 +1,7 @@
+const pool = require('../db/_connection')
+
 class Patient{
-    constructor(name, phone, birth_date, CPF, RG, CEP, email, address, occupation, comorbidities){
+    constructor(name, phone, birth_date, CPF, RG, CEP, email, address, occupation, comorbidities, userAddress){
         this.name = name;
         this.phone = phone;
         this.birth_date = birth_date;
@@ -10,27 +12,87 @@ class Patient{
         this.address = address;
         this.occupation = occupation;
         this.comorbidities = comorbidities;
-        this.log = {"creation_date": new Date()}
+        this.userAddress = userAddress;
     }
-
+    
     async registerPatient(){
-        // ...
+        this.log = `{
+            "creation_date": "${new Date().toDateString()}",
+            "creator": "${this.userAddress}",
+            "operation": "create_patient"
+        }`;
+
+        let createPatientQuery = `INSERT INTO patient
+        (patient_name, phone_number, birth_date, cpf, rg,
+            cep, email, patient_address, occupation, 
+            comorbidities, patient_log)
+            VALUES('${this.name}', '${this.phone}', 
+            '${this.birth_date}', ${this.CPF}, ${this.RG}, 
+                                '${this.CEP}', '${this.email}', '${this.address}',
+                                '${this.occupation}', '${this.comorbidities}', 
+                                '${this.log}');`;
+
+        let response;
+        try{
+            response = await pool.query(createPatientQuery)
+            return "Patient inserted successfully";
+        }catch(error){
+            return "Error while inserting patient";
+        }
+       
     }
 
     async listPatients(){
-        // ...
+        let response;
+        try {
+            response = await pool.query('SELECT * FROM patient');
+            return response.rows;
+        }catch (error){
+            return "Error while listing patients";
+        }
     }
 
-    async getPatientByID(){
-        // ...
+    async getPatientByID(patientId){
+        let response;
+        try {
+            response = await pool.query(`SELECT * FROM patient WHERE patient_id = ${patientId}`);
+            return response.rows;
+        }catch (error){
+            return "Error while returning patient";
+        }
     }
 
-    async updatePatient(){
-        // ...
+    async updatePatient(patientId){
+        this.log = `{
+            "creation_date": "${new Date().toDateString()}",
+            "creator": "${this.userAddress}",
+            "operation": "update_patient"
+        }`;
+
+        createUserQuery = ` UPDATE public.patient
+                            SET patient_name='${this.name}', 
+                            phone_number='${this.phone}',birth_date='${this.birth_date}', 
+                            cpf=${this.CPF}, rg=${this.RG}, cep='${this.CEP}', 
+                            email='${this.email}',patient_address='${this.address}',
+                            occupation='${this.occupation}', comorbidities='${this.comorbidities}', patient_log='${this.log}'
+                            WHERE patient_id= ${patientId};`
+        
+        try{
+            await pool.query(createUserQuery);
+            return "Patient updated successfully";
+        }catch(error){
+            return "Error while updating Patient";
+        }
     }
 
-    async deletePatient(){
-        // ...
+    async deletePatient(patientId){
+        let response;
+        try {
+            response = await pool.query(`DELETE FROM patient WHERE patient_id = ${patientId};`);
+            return "Patient deleted successfully"
+        }catch (error){
+            return "Error while deleting patient";
+        }
     }
 }
 
