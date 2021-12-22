@@ -2,7 +2,7 @@
 const express = require('express')
 var bodyParser = require('body-parser');
 const app = express()
-const port = 3000
+const port = 3333
 
 // Importing classes
 const User = require('./class/user')
@@ -127,8 +127,8 @@ app.post('/createPatient', async (req, res) => {
 app.get('/listPatients', async (req, res) => {
   const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try {
-    let user = new User("", "", "", userAddress);
-    res.send(await user.listUsers());
+    let patient = new Patient("", "", "", "", "", "", "","", "", "", userAddress);
+    res.send(await patient.listPatients());
   }catch(e){
     res.send(e);
   }

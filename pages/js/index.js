@@ -10,7 +10,7 @@ $("#signup").click(function(){
 function registerUser(form){
     $.ajax({
         type: "POST",
-        url: "http://localhost:3000/createUser",
+        url: "http://localhost:3333/createUser",
         data: {
             "email": form[0].value,
             "password": form[1].value,

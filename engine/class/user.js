@@ -37,7 +37,7 @@ class User{
             "creation_date": "${new Date().toDateString()}",
             "creator": "${this.userAddress}",
             "operation": "create_user"
-        }`   
+        }`
 
         // // NOTE: Antes de registrar um usuário é necessário ver se não existe um
         // // com este email a fim de evitar redundancia de dados
@@ -56,6 +56,7 @@ class User{
         }catch(error){
             return "Error while inserting user";
         }
+    
     }
 
 
