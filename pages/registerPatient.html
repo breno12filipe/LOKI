@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="css/registerPatient.css">
 </head>
 
-<body style=" background-image: url('./img/medicalClinic.jpeg');background-size:100%;overflow-x: hidden;">
-    <div class="jumbotron ml-5 mr-5 mt-3 mb-5"style="background-color:#58af9b;">
+<body class="container-fluid" style="background-image: url('./img/medicalClinic.jpeg');background-size:100%;overflow-x: hidden;background-repeat: no-repeat">
+    <div class="jumbotron ml-5 mr-5 mt-3 mb-5" style="background-color:#58af9b;">
         <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" href="#">
             <i class="bi bi-activity" style="font-size: 2em;"></i>
             <h3 class="row d-flex justify-content-center font-weight-bold" class="bi bi-activity" style="width:500px">Cadastrar Paciente</h3>
@@ -68,7 +68,7 @@
                 <div class="row-md-4">
                     <div class="form-group"style="text-align: center";>
                         <button onclick="window.location.href='./dashboard/patientDashboard.html'" style="width:100px" class="btn btn-warning text-white">Voltar</button>
-                        <button type="Enviar" style="width:100px" class="btn btn-info">Cadastrar</button>
+                        <button type="Enviar" style="width:100px" onclick="registerPatient(this.form)" class="btn btn-info">Cadastrar</button>
                     </div>
                 </div>
             </div> 

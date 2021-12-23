@@ -1,20 +1,6 @@
-
-#first-jumbotron{
-    margin:50px;
-    background-color: #e9ecef;
-    width: 500;
-    height:400px; 
-    position:fixed;
-    padding: 30px;
-    border-radius: 10px;
-}
-
-#second-jumbotron{
-    margin:50px;
-    background-color: #e9ecef;
-    width: 500;
-    height:400px; 
-    position:fixed;
-    padding: 30px;
-    border-radius: 10px;
+body{
+    background-image: url('./img/medicalClinic.jpeg');
+    background-size:100%;
+    overflow-x: hidden;
+    background-repeat: no-repeat
 }

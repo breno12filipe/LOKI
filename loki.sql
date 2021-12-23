@@ -11,7 +11,7 @@ CREATE TABLE patient (
     RG NUMERIC(7) NOT NULL,
     CEP VARCHAR(8), 
     email VARCHAR(320) NOT NULL,
-    patient_address JSON,
+    patient_address TEXT,
     occupation VARCHAR(60),
     comorbidities VARCHAR(280),
     patient_log JSON NOT NULL

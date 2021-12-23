@@ -23,7 +23,7 @@ class Patient{
         }`;
 
         let createPatientQuery = `INSERT INTO patient
-        (patient_name, phone_number, birth_date, cpf, rg,
+            (patient_name, phone_number, birth_date, cpf, rg,
             cep, email, patient_address, occupation, 
             comorbidities, patient_log)
             VALUES('${this.name}', '${this.phone}', 
@@ -34,10 +34,10 @@ class Patient{
 
         let response;
         try{
-            response = await pool.query(createPatientQuery)
+            response = await pool.query(createPatientQuery);
             return "Patient inserted successfully";
         }catch(error){
-            return "Error while inserting patient";
+            return error;
         }
        
     }
