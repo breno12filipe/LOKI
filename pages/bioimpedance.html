@@ -46,12 +46,12 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label for="bioimpedance-title" class="font-weight-bold">Título da Bioimpedância</label>
-                                    <input name="bioimpedance-title" type="text" class="form-control">
+                                    <input name="bioimpedance-title" id="bioimpedance-title" type="text" class="form-control">
                                 </div>
                                 <div class="row">&nbsp;</div>
                                 <div class="row">
-                                    <label for="bioimpedance-title" class="font-weight-bold">Descrição da Bioimpedância</label>
-                                    <input name="bioimpedance-title" type="text" class="form-control">
+                                    <label for="bioimpedance-description" class="font-weight-bold">Descrição da Bioimpedância</label>
+                                    <input name="bioimpedance-description" id="bioimpedance-description" type="text" class="form-control">
                                 </div>
                                 <div class="row">&nbsp;</div>
                                 <div class="row d-flex justify-content-center">
@@ -89,10 +89,21 @@
                     </div>
                     <div class="card row d-flex justify-content-center ml-5">
                         <div class="card-body">
-                            <p>Título da bioimpedância</p>
-                            <p>Descrição</p>
-                            <p>PDF</p> <!-- Dar opção de baixar como PDF-->
-                            <p>Data de registro</p>
+                            
+                            <div class="col">
+                                <div class="row">
+                                    <p><b>Título da bioimpedância:</b><p id="bioimpedance-title-conf"></p></p>
+                                </div>
+                                
+                                <div class="row">
+                                    <p><b>Descrição:</b><p id="bioimpedance-desc-conf"></p></p>
+                                </div>
+    
+                                <div class="row">
+                                    <p><b>Data de registro:</b><p id="bioimpedance-title-date"></p></p>
+                                </div>
+                            </div>
+                            
                         </div>
 
                         <div class="col-sm-10">

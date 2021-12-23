@@ -10,8 +10,8 @@ $(document).ready(function() {
 
 });
 
-function buildTable(patientsJson){
 
+function buildTable(patientsJson){
     patientTable = `<table id="patient-table">
                 <thead>
                     <tr>
@@ -25,6 +25,7 @@ function buildTable(patientsJson){
             `
     patientsJson.forEach(patient => {
         console.log(patient['patient_id']);
+
         patientTable += `<tr>
                             <td>${patient['patient_name']}</td>
                             <td>${patient['phone_number']}</td>
