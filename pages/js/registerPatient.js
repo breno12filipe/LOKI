@@ -25,9 +25,6 @@ function registerPatient(form){
     patientOccupation = form[8].value
     patientComorbidities = form[9].value
 
-    // é necessario tratar esses dados antes de fazer a requisição 
-    // por exemplo o tipo date e os tipos numbers
-
     $.ajax({
         type: "POST",
         url: "http://localhost:3333/createPatient",
