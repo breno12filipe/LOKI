@@ -108,7 +108,7 @@ app.post('/deleteUser', async (req, res) => {
   next();
 })
 
-// Not tested
+
 app.post('/createPatient', async (req, res) => {
   const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try{
@@ -131,6 +131,17 @@ app.get('/listPatients', async (req, res) => {
     res.send(await patient.listPatients());
   }catch(e){
     res.send(e);
+  }
+  next();
+})
+
+app.post('/authenticateUser', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let user = new User(req.body["email"], req.body["password"], "", userAddress);
+    res.send(await user.authUser());
+  }catch(error){
+    return error;
   }
   next();
 })

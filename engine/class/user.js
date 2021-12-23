@@ -135,6 +135,17 @@ class User{
         }
     }
 
+    async authUser(){
+        let response;
+        try{
+            response = await pool.query(`SELECT user_id FROM lokiuser WHERE email = '${this.email}' and user_password = MD5('${this.password}');`);
+            return {"responseText": response.rows[0]}
+
+        }catch(error){
+            return "Error while authenticating user";
+        }
+    }
+
 }
 
 module.exports = User 
