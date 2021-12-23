@@ -23,7 +23,7 @@
             <div class="second-column">
                 <h2 class="title title-secondary">Entre com sua conta</h2>
                 <p class="description description.secondary">Use um email válido para acesso</p>
-                <form class="form" action="./dashboard/patientDashboard.html">
+                <form onsubmit="return false;" class="form">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" placeholder="email">
@@ -33,7 +33,7 @@
                         <input type="password" placeholder="senha">
                         </label>
                         <a class="password" href="#">esqueceu sua senha?</a>
-                        <button class="btn btn-secondary">Acessar</button>
+                        <button onclick="authenticateUser(this.form)" class="btn btn-secondary">Acessar</button>
                 </form>
                 </div><!-- second column-->
             </div><!--first content-->

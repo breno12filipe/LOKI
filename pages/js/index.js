@@ -27,6 +27,30 @@ function registerUser(form){
     })
 }
 
+function authenticateUser(form){
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/authenticateUser",
+        data: {
+            "email": form[0].value,
+            "password": form[1].value
+        },
+        success: function(res){
+            if(typeof res['responseText'] == "undefined"){
+                alert("Usuário ou senha incorretos!")
+            }else{
+                window.location.href="./dashboard/patientDashboard.html"
+            }
+        },
+        error: function(res){
+            console.log(JSON.stringify(res['responseText']));
+            
+        },
+        dataType: "json",
+        async: true
+    })
+}
+
 
 
 
