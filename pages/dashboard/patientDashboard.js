@@ -30,9 +30,9 @@ function buildTable(patientsJson){
                             <td>
                             <i class="bi bi-file-bar-graph" title="Ver prontuário" style="cursor: pointer" onclick="accessMedicalReport(${patient["patient_id"]})"></i>
                                 &nbsp;
-                                <i class="bi bi-pen" title="Editar Paciente"></i>
+                                <i class="bi bi-pen" title="Editar Paciente" style="cursor: pointer"></i>
                                 &nbsp;
-                                <i class="bi bi-trash" title="Deletar Paciente"></i>
+                                <i class="bi bi-trash" title="Deletar Paciente" style="cursor: pointer" onclick="deletePatient(${patient["patient_id"]})"></i>
                             </td>
                          </tr>
         `;
@@ -50,6 +50,23 @@ function accessMedicalReport(patientID){
     localStorage.clear();
     localStorage.setItem("patient", patientID);
     window.location.href='../dashboard.html';
+}
+
+function deletePatient(patientID){
+    if (confirm("Deseja realmente deletar o paciente?")){
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3333/deletePatient",
+            data: {
+                "patient_id" : patientID
+            },
+            success: function(res){
+                document.location.reload(true);
+            },
+            dataType: "json",
+            async: true
+        })
+    }
 }
 
 

@@ -124,6 +124,17 @@ app.post('/createPatient', async (req, res) => {
   next();
 })
 
+app.post('/deletePatient', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let patient = new Patient("", "", "", "", "", "", "","", "", "", userAddress);
+    res.send(await patient.deletePatient(req.body["patient_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  next();
+})
+
 app.get('/listPatients', async (req, res) => {
   const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try {
