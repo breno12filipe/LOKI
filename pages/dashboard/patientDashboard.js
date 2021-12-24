@@ -7,7 +7,6 @@ $(document).ready(function() {
         },
         async: true
     })
-
 });
 
 
@@ -24,14 +23,12 @@ function buildTable(patientsJson){
                 <tbody>
             `
     patientsJson.forEach(patient => {
-        console.log(patient['patient_id']);
-
-        patientTable += `<tr>
+        patientTable += `<tr patientId="${patient["patient_id"]}">
                             <td>${patient['patient_name']}</td>
                             <td>${patient['phone_number']}</td>
                             <td>${patient['cpf']}</td>
                             <td>
-                            <i class="bi bi-file-bar-graph" title="Ver prontuário" style="cursor: pointer" onclick="window.location.href='../dashboard.html'"></i>
+                            <i class="bi bi-file-bar-graph" title="Ver prontuário" style="cursor: pointer" onclick="accessMedicalReport(${patient["patient_id"]})"></i>
                                 &nbsp;
                                 <i class="bi bi-pen" title="Editar Paciente"></i>
                                 &nbsp;
@@ -39,11 +36,20 @@ function buildTable(patientsJson){
                             </td>
                          </tr>
         `;
-        patientTable += `</tbody></table>`;
-
-        $("#patient-list").append(patientTable);
-        $("#patient-table").DataTable();
     });
+    patientTable += `</tbody></table>`;
+
+    $("#patient-list").empty();
+    $("#patient-table").empty();
+    
+    $("#patient-list").append(patientTable);
+    $("#patient-table").DataTable();
+}
+
+function accessMedicalReport(patientID){
+    localStorage.clear();
+    localStorage.setItem("patient", patientID);
+    window.location.href='../dashboard.html';
 }
 
 
