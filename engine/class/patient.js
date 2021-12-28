@@ -69,19 +69,22 @@ class Patient{
             "operation": "update_patient"
         }`;
 
-        createUserQuery = ` UPDATE public.patient
+        let updateUserQuery = ` UPDATE patient
                             SET patient_name='${this.name}', 
                             phone_number='${this.phone}',birth_date='${this.birth_date}', 
                             cpf=${this.CPF}, rg=${this.RG}, cep='${this.CEP}', 
                             email='${this.email}',patient_address='${this.address}',
                             occupation='${this.occupation}', comorbidities='${this.comorbidities}', patient_log='${this.log}'
-                            WHERE patient_id= ${patientId};`
-        
-        try{
-            await pool.query(createUserQuery);
-            return "Patient updated successfully";
+                            WHERE patient_id=${patientId};`;
+
+
+
+        let response;
+        try {
+            response = await pool.query(updateUserQuery);
+            return {"responseText" : "Patient updated successfully"};
         }catch(error){
-            return "Error while updating Patient";
+            return {"responseText" : "Error while updating Patient"};
         }
     }
 

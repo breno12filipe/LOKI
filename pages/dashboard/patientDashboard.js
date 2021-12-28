@@ -53,23 +53,8 @@ function accessMedicalReport(patientID){
 }
 
 function editPatient(patientID){
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:3333/getPatientByID",
-        data: {
-            "patient_id" : patientID
-        },
-        success: function(res){
-
-            window.location.href=`../registerPatient.html?teste:q`;
-            
-
-            
-
-        },
-        dataType: "json",
-        async: true
-    })
+    window.location.href=`../registerPatient.html?patient_id=${patientID}`;
+    
 
     
 }

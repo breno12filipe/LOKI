@@ -14,7 +14,7 @@
     <div class="jumbotron ml-5 mr-5 mt-3 mb-5" style="background-color:#58af9b;">
         <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" href="#">
             <i class="bi bi-activity" style="font-size: 2em;"></i>
-            <h3 class="row d-flex justify-content-center font-weight-bold" class="bi bi-activity" style="width:500px">Cadastrar Paciente</h3>
+            <h3 id="patientTitle" class="row d-flex justify-content-center font-weight-bold" class="bi bi-activity" style="width:500px">Cadastrar Paciente</h3>
             <i class="bi bi-activity" style="font-size: 2em;"></i>
         </a>
         <form onsubmit="return false;">
@@ -22,14 +22,14 @@
             <div class="mx-auto" style="width:500px" style="height: 100px";>
                 <div class="form-group">
                     <label for="exampleInputEmail1"slyle=>Nome Completo</label>
-                    <input class="form-control form-control-sm" type="text" placeholder="Nome completo">
+                    <input id="patientName"class="form-control form-control-sm" type="text" placeholder="Nome completo">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputTelefone">Telefone</label>
                     <input id="telInput" class="form-control form-control-sm" type="text" placeholder="(xx)xxxxx-xxxx">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputDatadenascimento">Data de Nascimento</label>
+                    <label for="exapatientNamempleInputDatadenascimento">Data de Nascimento</label>
                     <input id="dtInput" class="form-control form-control-sm" type="text" placeholder="xx/xx/xxxx">
                     <div class="exampleInputDatadenascimento">
                     <span class="glyphicon glyphicon-th"></span>
@@ -49,26 +49,26 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail">Email</label>
-                    <input type="email" class="form-control form-control-sm"  placeholder="xxxxxx@xxx.com">
+                    <input id="patientEmail" type="email" class="form-control form-control-sm"  placeholder="xxxxxx@xxx.com">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputendereco">Endereço</label>
-                    <input type="endereco" class="form-control form-control-sm"  placeholder="Endereço">
+                    <input id="patientAddress" type="endereco" class="form-control form-control-sm"  placeholder="Endereço">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputOcupacao">Ocupação</label>
-                    <input type="ocupacao" class="form-control form-control-sm"  placeholder="Ocupação">
+                    <input id="patientOccupation" type="ocupacao" class="form-control form-control-sm"  placeholder="Ocupação">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputcomorbidades">Comorbidades</label>
-                    <input type="comorbidadades" class="form-control form-control-sm"  placeholder="Comorbidades">
+                    <input id="patientComorbidities" type="comorbidadades" class="form-control form-control-sm"  placeholder="Comorbidades">
                 </div> 
                 </div>
 
                 <div class="row-md-4">
                     <div class="form-group"style="text-align: center";>
                         <button onclick="window.location.href='./dashboard/patientDashboard.html'" style="width:100px" class="btn btn-warning text-white">Voltar</button>
-                        <button type="Enviar" style="width:100px" onclick="registerPatient(this.form)" class="btn btn-info">Cadastrar</button>
+                        <button id="sendBtn" type="Enviar" style="width:100px" onclick="registerPatient(this.form)" class="btn btn-info">Cadastrar</button>
                     </div>
                 </div>
             </div> 

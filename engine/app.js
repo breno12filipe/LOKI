@@ -90,6 +90,7 @@ app.post('/updateUser', async (req, res) =>{
   }catch(e){
     res.send(e);
   }
+  next();
 })
 
 /*
@@ -140,6 +141,23 @@ app.post('/getPatientByID', async (req, res) => {
   try{
     let patient = new Patient("", "", "", "", "", "", "","", "", "", userAddress);
     res.send(await patient.getPatientByID(req.body["patient_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  next();
+})
+
+app.post('/updatePatient', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+  try{
+     let patient = new Patient(req.body["name"], req.body["phone"],
+                               req.body["birth_date"], req.body["CPF"],
+                               req.body["RG"], req.body["CEP"], req.body["email"],
+                               req.body["address"], req.body["occupation"], 
+                               req.body["comorbidities"], userAddress);
+    
+      res.send(await patient.updatePatient(req.body["patient_id"]));
   }catch(e){
     res.send(e);
   }
