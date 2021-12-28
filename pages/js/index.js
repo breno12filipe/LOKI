@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $("#login-loader").hide();
+})
+
 
 $("#signin").click(function(){
     $('body').attr('class', "sign-in-js" )
@@ -15,6 +19,14 @@ function registerUser(form){
             "email": form[0].value,
             "password": form[1].value,
             "role": "root"
+        },
+        beforeSend: function () {
+            // ... your initialization code here (so show loader) ...[
+            $("#login-loader").show()
+        },
+        complete: function () {
+            $("#login-loader").hide()
+            // ... your finalization code here (hide loader) ...
         },
         success: function(res){
             alert(JSON.stringify(res['responseText']));

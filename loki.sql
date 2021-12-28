@@ -51,6 +51,7 @@ CREATE TABLE bioimpedance (
     attachment VARCHAR(10),
     body TEXT NOT NULL,
     register_date DATE NOT NULL,
-    title VARCHAR(20) NOT null,
+    title VARCHAR(20) NOT NULL,
+    description VARCHAR(45) NOT NULL
     bioimpedance_log JSON not NULL
 )
