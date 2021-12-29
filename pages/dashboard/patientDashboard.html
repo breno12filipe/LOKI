@@ -22,26 +22,25 @@
     <link rel="stylesheet" href="patientDashboard.css">
 </head>
 <body>
-
   <div class="row-sm-12">
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #58af9b;">
       <div class="container-fluid">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
           <i class="bi bi-activity text-white"></i>
-          <div class="sidebar-brand-text mx-3 text-white">LOKI</div>
+          <div class="sidebar-brand-text mx-3 text-white">ANGELUS</div>
           <i class="bi bi-activity text-white"></i>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
-          <div class="col-sm-1"></div>
+          <div class="col-sm-0"></div>
           <div class="col-sm-4">
 
             <!-- Dropdown not working-->
-            <div class="loki-dropdown">
-              <button class="dropbtn btn btn-secondary">Ações</button>
-                <div class="loki-dropdown-content">
-                  <a href="../registerPatient.html">Cadasatrar Paciente</a>
+            <div class="loki-dropdown text-align-center">
+              <button class="bi bi-list text-lef dropbtn btn btn-secondary" style= background-color:#258d73>Ações</button>
+              <div class="loki-dropdown-content">
+                <a href="../registerPatient.html">Cadastrar Paciente</a>
                 </div>
             </div>
 
@@ -64,45 +63,8 @@
 
   <div class="row-sm-12">&nbsp;</div>
 
-
-  <table id="list-patients" class="display">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Número de celular</th>
-            <th>CPF</th>
-            <th>Operações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Joselito Carmo</td>
-            <td>(61)9 9432-8522</td>
-            <td>101.829.610-79</td>
-            <td>
-              <i class="bi bi-file-bar-graph" title="Ver prontuário" style="cursor: pointer" onclick="window.location.href='../dashboard.html'"></i>
-                &nbsp;
-                <i class="bi bi-pen" title="Editar Paciente"></i>
-                &nbsp;
-                <i class="bi bi-trash" title="Deletar Paciente"></i>
-            </td>
-        </tr>
-        <tr>
-            <td>Josefino Serafim</td>
-            <td>(61)9 9538-7332</td>
-            <td>846.184.740-76</td>
-            <td>
-                <i class="bi bi-file-bar-graph" title="Ver prontuário" style="cursor: pointer" onclick="window.location.href='../dashboard.html'"></i>
-                &nbsp;
-                <i class="bi bi-pen" title="Editar Paciente"></i>
-                &nbsp;
-                <i class="bi bi-trash" title="Deletar Paciente"></i>
-            </td>
-        </tr>
-    </tbody>
-</table>
+  <div id="patient-list"></div>
   
-
 <script src="patientDashboard.js"></script>
 </body>
 </html>

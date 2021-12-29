@@ -6,7 +6,8 @@ function criarJanela(){
         height: 720,
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        icon: './angelusIcon.png'
     })
     janela.loadFile('./pages/index.html')
     //janela.setFullScreen(true);

@@ -1,0 +1,6 @@
+body{
+    background-image: url('./img/medicalClinic.jpeg');
+    background-size:100%;
+    overflow-x: hidden;
+    background-repeat: no-repeat
+}

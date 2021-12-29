@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $("#login-loader").hide();
+})
+
 
 $("#signin").click(function(){
     $('body').attr('class', "sign-in-js" )
@@ -6,4 +10,60 @@ $("#signin").click(function(){
 $("#signup").click(function(){
     $('body').attr('class', "sign-up-js" )
 })
+
+function registerUser(form){
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/createUser",
+        data: {
+            "email": form[0].value,
+            "password": form[1].value,
+            "role": "root"
+        },
+        beforeSend: function () {
+            // ... your initialization code here (so show loader) ...[
+            $("#login-loader").show()
+        },
+        complete: function () {
+            $("#login-loader").hide()
+            // ... your finalization code here (hide loader) ...
+        },
+        success: function(res){
+            alert(JSON.stringify(res['responseText']));
+        },
+        error: function(res){
+            alert(JSON.stringify(res['responseText']));
+        },
+        dataType: "json",
+        async: true
+    })
+}
+
+function authenticateUser(form){
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/authenticateUser",
+        data: {
+            "email": form[0].value,
+            "password": form[1].value
+        },
+        success: function(res){
+            if(typeof res['responseText'] == "undefined"){
+                alert("Usuário ou senha incorretos!")
+            }else{
+                window.location.href="./dashboard/patientDashboard.html"
+            }
+        },
+        error: function(res){
+            console.log(JSON.stringify(res['responseText']));
+            
+        },
+        dataType: "json",
+        async: true
+    })
+}
+
+
+
+
 

@@ -11,7 +11,7 @@ CREATE TABLE patient (
     RG NUMERIC(7) NOT NULL,
     CEP VARCHAR(8), 
     email VARCHAR(320) NOT NULL,
-    patient_address JSON,
+    patient_address TEXT,
     occupation VARCHAR(60),
     comorbidities VARCHAR(280),
     patient_log JSON NOT NULL
@@ -51,6 +51,7 @@ CREATE TABLE bioimpedance (
     attachment VARCHAR(10),
     body TEXT NOT NULL,
     register_date DATE NOT NULL,
-    title VARCHAR(20) NOT null,
+    title VARCHAR(20) NOT NULL,
+    description VARCHAR(45) NOT NULL
     bioimpedance_log JSON not NULL
 )
