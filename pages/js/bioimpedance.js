@@ -60,5 +60,4 @@ function saveAnamnesis(){
     console.log($("#bioimpedance-title").val())
     console.log($("#bioimpedance-description").val())
     console.log($("#bioimpedace-summernote").val())
-    
 }

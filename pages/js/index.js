@@ -21,12 +21,10 @@ function registerUser(form){
             "role": "root"
         },
         beforeSend: function () {
-            // ... your initialization code here (so show loader) ...[
             $("#login-loader").show()
         },
         complete: function () {
             $("#login-loader").hide()
-            // ... your finalization code here (hide loader) ...
         },
         success: function(res){
             alert(JSON.stringify(res['responseText']));
