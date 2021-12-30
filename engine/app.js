@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
-  next();
+  //next();
 })
 
 
@@ -39,7 +39,7 @@ app.post('/createUser', async (req, res) => {
     res.send(e);
   }
 
-  next();
+  //next();
 })
 
 app.get('/listUsers', async (req, res) => {
@@ -50,7 +50,7 @@ app.get('/listUsers', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 /*
@@ -66,7 +66,7 @@ app.get('/getUserByID', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 
@@ -90,7 +90,7 @@ app.post('/updateUser', async (req, res) =>{
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 /*
@@ -106,7 +106,7 @@ app.post('/deleteUser', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 
@@ -122,7 +122,7 @@ app.post('/createPatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 app.post('/deletePatient', async (req, res) => {
@@ -133,7 +133,7 @@ app.post('/deletePatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 app.post('/getPatientByID', async (req, res) => {
@@ -144,7 +144,7 @@ app.post('/getPatientByID', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 app.post('/updatePatient', async (req, res) => {
@@ -161,7 +161,7 @@ app.post('/updatePatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 app.get('/listPatients', async (req, res) => {
@@ -172,7 +172,7 @@ app.get('/listPatients', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
 app.post('/authenticateUser', async (req, res) => {
@@ -183,7 +183,7 @@ app.post('/authenticateUser', async (req, res) => {
   }catch(error){
     return error;
   }
-  next();
+  //next();
 })
 
 
