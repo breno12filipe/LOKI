@@ -56,8 +56,9 @@ $("#bioimpedance-step3-recede").click(function(){
 })
 
 
-function saveAnamnesis(){
-    console.log($("#bioimpedance-title").val())
-    console.log($("#bioimpedance-description").val())
-    console.log($("#bioimpedace-summernote").val())
+function saveBioimpedance(form){
+    console.log(form)
+    // console.log($("#bioimpedance-title").val())
+    // console.log($("#bioimpedance-description").val())
+    // console.log($("#bioimpedace-summernote").val())
 }
