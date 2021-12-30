@@ -15,7 +15,7 @@ def start_electron_instance():
         os.system('cd engine && npm start')
     elif so == 'Windows':
         os.system('cd engine')
-        os.system('cd npm start')
+        os.system('npm start')
 
 try:
     server_thread = threading.Thread(target=start_express_server)
