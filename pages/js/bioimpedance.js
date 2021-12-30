@@ -65,10 +65,11 @@ $("#bioimpedance-step3-recede").click(function(){
 
 function saveBioimpedance(){
     
-    title = $("#bioimpedance-title").val()
-    description = $("#bioimpedance-description").val()
-    text = $("#bioimpedace-summernote").val()
-    date = formatStringDate(getCurrentDate())
+    let title = $("#bioimpedance-title").val();
+    let description = $("#bioimpedance-description").val();
+    let text = $("#bioimpedace-summernote").val();
+    let date = formatStringDate(getCurrentDate());
+    let patientID = localStorage.getItem("patient");
 
     $.ajax({
         type: "POST",
@@ -77,7 +78,8 @@ function saveBioimpedance(){
             "title": title,
             "description": description,
             "anamnesisText": text,
-            "registerDate": date
+            "registerDate": date,
+            "patient_id": patientID
         },
         success: function(res){
             alert(res["responseText"])

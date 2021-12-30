@@ -190,7 +190,9 @@ app.post('/authenticateUser', async (req, res) => {
 app.post('/createBioimpedance', async (req, res) => {
   const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try{
-    let bioimpedance = new Bioimpedance(req.body["title"], req.body["description"], req.body["anamnesisText"], req.body["registerDate"], userAddress);
+    let bioimpedance = new Bioimpedance(req.body["title"], req.body["description"], 
+                                        req.body["anamnesisText"], req.body["registerDate"], 
+                                        req.body["patient_id"], userAddress);
     res.send(await bioimpedance.createBioimpedance());
   }catch(error){
     return error;

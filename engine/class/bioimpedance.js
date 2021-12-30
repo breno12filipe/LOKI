@@ -1,11 +1,12 @@
 const pool = require('../db/_connection')
 
 class Bioimpedance{
-    constructor(title, description, anamnesisText, registerDate, userAddress){
+    constructor(title, description, anamnesisText, registerDate, patientId, userAddress){
         this.title = title;
         this.description = description;
         this.anamnesisText = anamnesisText;
         this.registerDate = registerDate;
+        this.patientId = patientId
     }
 
     async createBioimpedance(){
@@ -17,10 +18,11 @@ class Bioimpedance{
         
         let createBioimpedanceQuery = `
             INSERT INTO bioimpedance
-            (body, register_date, title, bioimpedance_description, bioimpedance_log)
-            VALUES('${this.anamnesisText}', '${this.registerDate}', 
-                   '${this.title}', '${this.description}', '${this.log}');
+            (body, register_date, title, bioimpedance_description, patient_id_fk, bioimpedance_log)
+            VALUES('${this.anamnesisText}', '${this.registerDate}', '${this.title}',
+                   '${this.description}', ${this.patientId}, '${this.log}');
         `
+
 
         let response;
         try{
