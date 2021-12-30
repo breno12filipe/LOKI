@@ -192,11 +192,11 @@ input:-webkit-autofill
     border-bottom-left-radius: 0;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    animation: slidein 1.3s;
+    animation: slidein 0.6s;
     z-index: 12;
 }
 .sign-up-js .content::before{
-    animation: slideout 1.3s; 
+    animation: slideout 0.6s; 
     z-index: 12;
 }
 .sign-up-js .second-content .first-column{
@@ -213,12 +213,12 @@ input:-webkit-autofill
 .sign-in-js .first-content .second-column{
     z-index: -1;
     position: relative;
-    animation: deslocamentoEsq 1.3s;
+    animation: deslocamentoEsq 0.1s;
 }
 .sign-up-js .second-content .second-column{
     z-index: -1;
     position: relative;
-    animation: deslocamentoDir 1.3s;
+    animation: deslocamentoDir 0.1s;
 }
 /* btn animation */
 
@@ -287,19 +287,21 @@ input:-webkit-autofill
     }
     
     25% {
-        left: 5%;
+        left: 10%;
         width: 50%;
+         background-color: #58af9b;
+        
         
 
     }
     50%{
-        left: 25%;
+        left: 30%;
         width: 60%;
-        background-color:#affdec;
+        background-color:#58af9b;
         
     }
     75%{
-        left: 45%;
+        left: 50%;
         width: 50%;
     }
     to {
@@ -316,18 +318,21 @@ input:-webkit-autofill
 
     }
     25%{
-        left: 45%;
+        left: 50%;
         width: 50%;
     }
     50%{
-        left: 25%;
+        left: 30%;
         width: 60%;
-        background-color:#affdec;
+        background-color: #58af9b;
+        ;
 
     }
     75%{
-        left: 5%;
+        left: 10%;
         width: 50%;
+        background-color: #58af9b;
+        
     }
     to{
         left: 0;
