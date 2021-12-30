@@ -1,7 +1,7 @@
 const pool = require('../db/_connection')
 
 class Bioimpedance{
-    constructor(title, description, anamnesisText, registerDate){
+    constructor(title, description, anamnesisText, registerDate, userAddress){
         this.title = title;
         this.description = description;
         this.anamnesisText = anamnesisText;
@@ -15,8 +15,8 @@ class Bioimpedance{
             "operation": "create_bioimpedance"
         }`;
         
-        createBioimpedanceQuery = `
-            INSERT INTO public.bioimpedance
+        let createBioimpedanceQuery = `
+            INSERT INTO bioimpedance
             (body, register_date, title, bioimpedance_description, bioimpedance_log)
             VALUES('${this.anamnesisText}', '${this.registerDate}', 
                    '${this.title}', '${this.description}', '${this.log}');
@@ -87,3 +87,5 @@ class Bioimpedance{
     }
 
 }
+
+module.exports = Bioimpedance

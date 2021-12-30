@@ -18,6 +18,13 @@ function getCurrentDate(){
     return dataAtual;
 }
 
+function formatStringDate(date) {
+    var day  = date.split("/")[0];
+    var month  = date.split("/")[1];
+    var year  = date.split("/")[2];
+    return year + '-' + ("0"+month).slice(-2) + '-' + ("0"+day).slice(-2);
+}
+
 $("#bioimpedance-step1-advance").click(function(){
     $("#bioimpedance-step-1").hide();
     $("#bioimpedance-step-btn-1").css('background-color', '#EFEFEF');
@@ -56,9 +63,31 @@ $("#bioimpedance-step3-recede").click(function(){
 })
 
 
-function saveBioimpedance(form){
-    console.log(form)
-    // console.log($("#bioimpedance-title").val())
-    // console.log($("#bioimpedance-description").val())
-    // console.log($("#bioimpedace-summernote").val())
+function saveBioimpedance(){
+    
+    title = $("#bioimpedance-title").val()
+    description = $("#bioimpedance-description").val()
+    text = $("#bioimpedace-summernote").val()
+    date = formatStringDate(getCurrentDate())
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/createBioimpedance",
+        data: {
+            "title": title,
+            "description": description,
+            "anamnesisText": text,
+            "registerDate": date
+        },
+        success: function(res){
+            alert(res["responseText"])
+            document.location.reload(true);
+        },
+        error: function(res){
+            console.log(res)
+            alert(res["responseText"]);
+        },
+        dataType: "json",
+        async: true
+    })
 }

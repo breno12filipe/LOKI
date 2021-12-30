@@ -7,13 +7,14 @@ const port = 3333
 // Importing classes
 const User = require('./class/user')
 const Patient = require('./class/patient')
+const Bioimpedance = require('./class/bioimpedance')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json()) 
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
-  //next();
+  next();
 })
 
 
@@ -39,7 +40,7 @@ app.post('/createUser', async (req, res) => {
     res.send(e);
   }
 
-  //next();
+  next();
 })
 
 app.get('/listUsers', async (req, res) => {
@@ -50,7 +51,7 @@ app.get('/listUsers', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 /*
@@ -66,7 +67,7 @@ app.get('/getUserByID', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 
@@ -90,7 +91,7 @@ app.post('/updateUser', async (req, res) =>{
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 /*
@@ -106,7 +107,7 @@ app.post('/deleteUser', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 
@@ -122,7 +123,7 @@ app.post('/createPatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 app.post('/deletePatient', async (req, res) => {
@@ -133,7 +134,7 @@ app.post('/deletePatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 app.post('/getPatientByID', async (req, res) => {
@@ -144,7 +145,7 @@ app.post('/getPatientByID', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 app.post('/updatePatient', async (req, res) => {
@@ -161,7 +162,7 @@ app.post('/updatePatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 app.get('/listPatients', async (req, res) => {
@@ -172,7 +173,7 @@ app.get('/listPatients', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  //next();
+  next();
 })
 
 app.post('/authenticateUser', async (req, res) => {
@@ -183,9 +184,19 @@ app.post('/authenticateUser', async (req, res) => {
   }catch(error){
     return error;
   }
-  //next();
+  next();
 })
 
+app.post('/createBioimpedance', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let bioimpedance = new Bioimpedance(req.body["title"], req.body["description"], req.body["anamnesisText"], req.body["registerDate"], userAddress);
+    res.send(await bioimpedance.createBioimpedance());
+  }catch(error){
+    return error;
+  }
+  //next();
+})
 
 
 app.listen(port, () => {
