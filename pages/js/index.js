@@ -11,6 +11,20 @@ $("#signup").click(function(){
     $('body').attr('class', "sign-up-js" )
 })
 
+$("#reg-eye").click(function(){
+    if ($("#reg-eye").attr("state") == "closed"){
+        $("#reg-eye").attr("state", "open")
+        $("#reg-eye").removeClass("fa-eye-slash")
+        $("#reg-eye").addClass("fa-eye")
+        $("#reg-password").attr("type", "text")
+    }else if ($("#reg-eye").attr("state") == "open"){
+        $("#reg-eye").attr("state", "closed")
+        $("#reg-eye").removeClass("fa-eye")
+        $("#reg-eye").addClass("fa-eye-slash")
+        $("#reg-password").attr("type", "password")
+    }
+})
+
 $("#login-eye").click(function(){
     if ($("#login-eye").attr("state") == "closed"){
         $("#login-eye").attr("state", "open")
