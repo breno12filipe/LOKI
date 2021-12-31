@@ -42,7 +42,7 @@ function buildTable(bioimpedances){
                 &nbsp;
                 <i class="bi bi-pen" title="Editar Bioimpedancia" style="cursor: pointer" onclick="editPatient(${bioimpedance["bioimpedance_id"]})"></i>
                 &nbsp;
-                <i class="bi bi-trash" title="Deletar Bioimpedancia" style="cursor: pointer" onclick="deletePatient(${bioimpedance["bioimpedance_id"]})"></i>
+                <i class="bi bi-trash" title="Deletar Bioimpedancia" style="cursor: pointer" onclick="deleteBioimpedance(${bioimpedance["bioimpedance_id"]})"></i>
                 </td>
         </tr>
         `;
@@ -54,4 +54,23 @@ function buildTable(bioimpedances){
     
     $("#bioimpedance-list").append(bioimpedanceTable);
     $("#bioimpedance-table").DataTable();
+}
+
+function deleteBioimpedance(bioimpedance_id){
+    if (confirm("Deseja realmente deletar a bioimpedância?")){
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3333/deleteBioimpedance",
+            data: {
+                "bioimpedance_id" : bioimpedance_id
+            },
+            success: function(res){
+                alert(res)
+                document.location.reload(true);
+            },
+            async: true
+        })
+    }else{
+        console.log("a")
+    }
 }

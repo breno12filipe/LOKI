@@ -78,7 +78,7 @@ class Bioimpedance{
         }
     }
 
-    async deletePatient(bioimpedanceId){
+    async deleteBioimpedance(bioimpedanceId){
         let response;
         try {
             response = await pool.query(`DELETE FROM bioimpedance WHERE bioimpedance_id = ${bioimpedanceId};`);
