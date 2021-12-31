@@ -34,10 +34,10 @@ class Bioimpedance{
        
     }
 
-    async listBioimpedance(){
+    async listBioimpedance(patientId){
         let response;
         try {
-            response = await pool.query('SELECT * FROM bioimpedance');
+            response = await pool.query(`SELECT * FROM bioimpedance WHERE patient_id_fk = '${patientId}'`);
             return response.rows;
         }catch (error){
             return "Error while listing bioimpedances";

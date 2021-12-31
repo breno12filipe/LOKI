@@ -200,6 +200,16 @@ app.post('/createBioimpedance', async (req, res) => {
   //next();
 })
 
+app.post('/listBioimpedance', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let bioimpedance = new Bioimpedance("", "", "", "", "", userAddress);
+    res.send(await bioimpedance.listBioimpedance(req.body["patient_id"]));
+  }catch(error){
+    return error;
+  }
+  //next();
+})
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
