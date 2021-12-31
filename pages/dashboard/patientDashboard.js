@@ -47,7 +47,7 @@ function buildTable(patientsJson){
 }
 
 function accessMedicalReport(patientID){
-    localStorage.clear();
+    localStorage.removeItem("patient");
     localStorage.setItem("patient", patientID);
     window.location.href='../dashboard.html';
 }

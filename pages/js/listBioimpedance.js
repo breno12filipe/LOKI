@@ -38,9 +38,9 @@ function buildTable(bioimpedances){
             <td>${bioimpedance['bioimpedance_description']}</td>
             <td>${reverseFormatStringDate(bioimpedance['register_date'])}</td>
             <td>
-                <i class="bi bi-file-bar-graph" title="Ver Bioimpedancia" style="cursor: pointer" onclick="accessMedicalReport(${bioimpedance["bioimpedance_id"]})"></i>
+                <i class="bi bi-file-bar-graph" title="Ver Bioimpedancia" style="cursor: pointer" onclick="AccessBioimpedance(${bioimpedance["bioimpedance_id"]})"></i>
                 &nbsp;
-                <i class="bi bi-pen" title="Editar Bioimpedancia" style="cursor: pointer" onclick="editPatient(${bioimpedance["bioimpedance_id"]})"></i>
+                <i class="bi bi-pen" title="Editar Bioimpedancia" style="cursor: pointer" onclick="editBioimpedance(${bioimpedance["bioimpedance_id"]})"></i>
                 &nbsp;
                 <i class="bi bi-trash" title="Deletar Bioimpedancia" style="cursor: pointer" onclick="deleteBioimpedance(${bioimpedance["bioimpedance_id"]})"></i>
                 </td>
@@ -73,4 +73,12 @@ function deleteBioimpedance(bioimpedance_id){
     }else{
         console.log("a")
     }
+}
+
+function editBioimpedance(bioimpedance_id){
+    localStorage.removeItem("bioimpedance");
+    localStorage.setItem("bioimpedance", bioimpedance_id);
+    window.location.href='./bioimpedance.html';
+    
+    
 }
