@@ -79,6 +79,4 @@ function editBioimpedance(bioimpedance_id){
     localStorage.removeItem("bioimpedance");
     localStorage.setItem("bioimpedance", bioimpedance_id);
     window.location.href='./bioimpedance.html';
-    
-    
 }
