@@ -233,9 +233,20 @@ app.post('/getBioimpedanceByID', async (req, res) => {
   }
 })
 
+app.post('/updateBioimpedance', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let bioimpedance = new Bioimpedance(req.body["title"], req.body["description"], 
+                                        req.body["anamnesisText"], req.body["registerDate"], 
+                                        req.body["patient_id"], userAddress);
+    res.send(await bioimpedance.updateBioimpedance(req.body["bioimpedance_id"]));
+  }catch(error){
+    return error;
+  }
+})
+
 
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 })
-

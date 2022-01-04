@@ -12,6 +12,24 @@ $(document).ready(function() {
     })
 });
 
+function getCurrentDate(){
+    var data = new Date();
+    var dia = String(data.getDate()).padStart(2, '0');
+    var mes = String(data.getMonth() + 1).padStart(2, '0');
+    var ano = data.getFullYear();
+    dataAtual = dia + '/' + mes + '/' + ano;
+
+    return dataAtual;
+}
+
+function formatStringDate(date) {
+    var day  = date.split("/")[0];
+    var month  = date.split("/")[1];
+    var year  = date.split("/")[2];
+    return year + '-' + ("0"+month).slice(-2) + '-' + ("0"+day).slice(-2);
+}
+
+
 function reverseFormatStringDate(date){
     let formattedDate = String(date.split("T").splice(0, 1));
     formattedDate = formattedDate.split("-");
@@ -76,7 +94,63 @@ function deleteBioimpedance(bioimpedance_id){
 }
 
 function editBioimpedance(bioimpedance_id){
-    localStorage.removeItem("bioimpedance");
-    localStorage.setItem("bioimpedance", bioimpedance_id);
-    window.location.href='./bioimpedance.html';
+    //localStorage.removeItem("bioimpedance");
+    //localStorage.setItem("bioimpedance", bioimpedance_id);
+    
+    $("#EditBioimpedanceDialog").dialog({
+        width: 900,
+        height: 600
+    })
+    
+    $("#edit-bioimpedace-summernote").summernote({
+        height: 350
+    })
+
+    $("#edit-bioimpedance-submit").attr('onclick', `performEditChanges(${bioimpedance_id})`)
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/getBioimpedanceByID",
+        data: {
+            "bioimpedance_id" : bioimpedance_id
+        },
+        success: function(res){
+            $("#edit-bioimpedance-title").val(res[0]['title'])
+            $("#edit-bioimpedance-description").val(res[0]['bioimpedance_description'])
+            $('#edit-bioimpedace-summernote').summernote('pasteHTML', res[0]['body']);
+        },
+        async: true
+    })
+}
+
+function performEditChanges(bioimpedanceID){
+    console.log(bioimpedanceID)
+    var title = $("#edit-bioimpedance-title").val()
+    var description = $("#edit-bioimpedance-description").val()
+    var body = $('#edit-bioimpedace-summernote').val()
+    var date = formatStringDate(getCurrentDate())
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/updateBioimpedance",
+        data: {
+            "title": title,
+            "description": description,
+            "anamnesisText": body,
+            "registerDate": date,
+            "bioimpedance_id": bioimpedanceID
+        },
+        success: function(res){
+            alert(res["responseText"])
+            document.location.reload(true);
+        },
+        error: function(res){
+            console.log(res)
+            alert(res["responseText"]);
+        },
+        dataType: "json",
+        async: true
+    })
+
+
 }
