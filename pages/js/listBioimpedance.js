@@ -93,6 +93,33 @@ function deleteBioimpedance(bioimpedance_id){
     }
 }
 
+function AccessBioimpedance(bioimpedance_id){
+    $("#showBioimpedanceDialog").dialog({
+        width: 900,
+        height: 600
+    })
+
+    $("#show-bioimpedace-summernote").summernote( {
+        height: 350
+    })
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/listBioimpedance",
+        data: {
+            "patient_id" : localStorage.getItem("patient")
+        },
+        success: function(res){
+            console.log(res)
+            $("#show-bioimpedance-title").val(res[0]['title'])
+            $("#show-bioimpedance-description").val(res[0]['bioimpedance_description'])
+            $('#show-bioimpedace-summernote').summernote('pasteHTML', res[0]['body']);
+
+        },
+        async: true
+    })
+}
+
 function editBioimpedance(bioimpedance_id){
     //localStorage.removeItem("bioimpedance");
     //localStorage.setItem("bioimpedance", bioimpedance_id);
