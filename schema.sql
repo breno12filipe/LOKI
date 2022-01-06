@@ -44,7 +44,7 @@ CREATE TABLE bioimpedance (
     register_date DATE NOT NULL,
     title VARCHAR(20) NOT NULL,
     bioimpedance_description VARCHAR(45) NOT NULL,
-    bioimpedance_log JSON not NULL,
+    bioimpedance_log JSON NOT NULL,
     user_id_fk INT REFERENCES patient(patient_id),
     PRIMARY KEY (bioimpedance_id)
 )
