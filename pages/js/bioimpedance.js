@@ -94,7 +94,7 @@ function saveBioimpedance(){
         data: {
             "title": title,
             "description": description,
-            "anamnesisText": text,
+            "bioimpedanceText": text,
             "registerDate": date,
             "patient_id": patientID
         },

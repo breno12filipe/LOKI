@@ -1,12 +1,13 @@
 const pool = require('../db/_connection')
 
 class Anamnesis{
-    constructor(title, description, anamnesisText){
+    constructor(title, description, anamnesisText, registerDate, patientId, userAddress){
         this.title = title;
         this.description = description;
         this.anamnesisText = anamnesisText;
         this.registerDate = registerDate;
         this.patientId = patientId
+        this.userAddress = userAddress
     }
 
     async createAnamnesis(){
@@ -57,3 +58,5 @@ class Anamnesis{
     }
 
 }
+
+module.exports = Anamnesis 

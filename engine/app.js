@@ -192,7 +192,7 @@ app.post('/createBioimpedance', async (req, res) => {
   const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try{
     let bioimpedance = new Bioimpedance(req.body["title"], req.body["description"], 
-                                        req.body["anamnesisText"], req.body["registerDate"], 
+                                        req.body["bioimpedanceText"], req.body["registerDate"], 
                                         req.body["patient_id"], userAddress);
     res.send(await bioimpedance.createBioimpedance());
   }catch(error){
@@ -246,6 +246,19 @@ app.post('/updateBioimpedance', async (req, res) => {
   }
 })
 
+app.post('/createAnamnesis', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let anamnesis = new Anamnesis(req.body["title"], req.body["description"], 
+                                  req.body["anamnesisText"], req.body["registerDate"], 
+                                  req.body["patient_id"], userAddress);
+    res.send(await anamnesis.createAnamnesis());
+  }catch(error){
+    console.log(error)
+    return error;
+  }
+  //next();
+})
 
 
 app.listen(port, () => {
