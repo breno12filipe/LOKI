@@ -53,6 +53,16 @@ class Anamnesis{
         }
     }
 
+    async deleteAnamnesis(anamnesisId){
+        let response;
+        try {
+            response = await pool.query(`DELETE FROM anamnesis WHERE anamnesis_id=${anamnesisId};`);
+            return "Anamnesis deleted successfully"
+        }catch (error){
+            return "Error while deleting anamnesis";
+        }
+    }
+
     async generateAnamnesisPDF(){
 
     }

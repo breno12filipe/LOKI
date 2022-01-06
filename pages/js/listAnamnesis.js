@@ -59,5 +59,21 @@ function buildTable(anamnesis){
     $("#anamnesis-list").append(anamnesisTable);
     $("#anamnesis-table").DataTable();
 
+}
 
+function deleteAnamnesis(anamnesis_id){
+    if (confirm("Deseja realmente deletar a anamnese?")){
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3333/deleteAnamnesis",
+            data: {
+                "anamnesis_id" : anamnesis_id
+            },
+            success: function(res){
+                alert(res)
+                document.location.reload(true);
+            },
+            async: true
+        })
+    }
 }

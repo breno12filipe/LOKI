@@ -271,6 +271,17 @@ app.post('/listAnamnesis', async (req, res) => {
   next();
 })
 
+app.post('/deleteAnamnesis', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try {
+    let anamnesis = new Anamnesis("", "", "", "", "", userAddress);
+    res.send(await anamnesis.deleteAnamnesis(req.body["anamnesis_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  next();
+})
+
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 })
