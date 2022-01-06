@@ -63,6 +63,36 @@ class Anamnesis{
         }
     }
 
+    async updateAnamnesis(anamnesisId){
+        this.log = `{
+            "creation_date": "${new Date().toDateString()}",
+            "creator": "${this.userAddress}",
+            "operation": "update_anamnesis"
+        }`;
+
+        console.log(anamnesisId)
+
+        let updateAnamnesisQuery = `
+                                    UPDATE anamnesis
+                                    SET body='${this.anamnesisText}', 
+                                    register_date='${this.registerDate}', 
+                                    title='${this.title}', 
+                                    anamnesis_description='${this.description}', 
+                                    patient_id_fk=${this.patientId}, 
+                                    anamnesis_log='${this.log}'
+                                    WHERE anamnesis_id=${anamnesisId};
+                                    `;
+        let response;
+        try {
+            response = await pool.query(updateAnamnesisQuery);
+            return {"responseText" : "Anamnesis updated successfully"};
+        }catch(error){
+            console.log(error)
+            return {"responseText" : "Error while updating anamnesis"};
+        }
+        
+    }
+
     async generateAnamnesisPDF(){
 
     }

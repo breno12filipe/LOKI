@@ -151,7 +151,6 @@ function editBioimpedance(bioimpedance_id){
 }
 
 function performEditChanges(bioimpedanceID){
-    console.log(bioimpedanceID)
     var title = $("#edit-bioimpedance-title").val()
     var description = $("#edit-bioimpedance-description").val()
     var body = $('#edit-bioimpedace-summernote').val()
@@ -163,7 +162,7 @@ function performEditChanges(bioimpedanceID){
         data: {
             "title": title,
             "description": description,
-            "anamnesisText": body,
+            "bioimpedanceText": body,
             "registerDate": date,
             "bioimpedance_id": bioimpedanceID
         },
