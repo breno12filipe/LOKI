@@ -8,6 +8,7 @@ const port = 3333
 const User = require('./class/user')
 const Patient = require('./class/patient')
 const Bioimpedance = require('./class/bioimpedance')
+const Anamnesis = require('./class/anamnesis')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json()) 

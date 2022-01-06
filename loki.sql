@@ -18,15 +18,6 @@ CREATE TABLE patient (
     PRIMARY KEY (patient_id)
 )
 
-CREATE TABLE Anamnesis (
-    anamnesis_id SERIAL PRIMARY KEY NOT NULL,
-    attachment VARCHAR(10),
-    body TEXT NOT NULL,
-    register_date DATE NOT NULL,
-    title VARCHAR(20) NOT null,
-    anamnesis_log JSON NOT NULL
-)
-
 CREATE TABLE lokiuser (
     user_id SERIAL PRIMARY KEY NOT NULL,
     email VARCHAR(320) NOT NULL,
@@ -56,4 +47,16 @@ CREATE TABLE bioimpedance (
     bioimpedance_log JSON not NULL,
     user_id_fk INT REFERENCES patient(patient_id),
     PRIMARY KEY (bioimpedance_id)
+)
+
+CREATE TABLE Anamnesis (
+    anamnesis_id INT GENERATED ALWAYS AS IDENTITY,
+    -- attachment VARCHAR(10),
+    body TEXT NOT NULL,
+    register_date DATE NOT NULL,
+    title VARCHAR(20) NOT null,
+    anamnesis_description VARCHAR(45) NOT NULL,
+    user_id_fk INT REFERENCES patient(patient_id),
+    anamnesis_log JSON NOT NULL,
+    PRIMARY KEY (anamnesis_id)
 )

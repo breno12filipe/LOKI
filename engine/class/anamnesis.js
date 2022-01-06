@@ -5,6 +5,8 @@ class Anamnesis{
         this.title = title;
         this.description = description;
         this.anamnesisText = anamnesisText;
+        this.registerDate = registerDate;
+        this.patientId = patientId
     }
 
     async createAnamnesis(){
