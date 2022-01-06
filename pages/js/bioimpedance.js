@@ -6,22 +6,22 @@ $(document).ready(function() {
         width: 1000
     })
 
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:3333/getBioimpedanceByID",
-        data: {
-            "bioimpedance_id" : localStorage.getItem("bioimpedance")
-        },
-        success: function(res){
-            console.log(res)
+    // $.ajax({
+    //     type: "POST",
+    //     url: "http://localhost:3333/getBioimpedanceByID",
+    //     data: {
+    //         "bioimpedance_id" : localStorage.getItem("bioimpedance")
+    //     },
+    //     success: function(res){
+    //         console.log(res)
             
-            $("#bioimpedance-title").val(res[0]['title'])
-            $("#bioimpedance-description").val(res[0]['bioimpedance_description'])
-            // NOT WORKING...
-            $("#bioimpedace-summernote").val(res[0]['body'])
-        },
-        async: true
-    })
+    //         $("#bioimpedance-title").val(res[0]['title'])
+    //         $("#bioimpedance-description").val(res[0]['bioimpedance_description'])
+    //         // NOT WORKING...
+    //         $("#bioimpedace-summernote").val(res[0]['body'])
+    //     },
+    //     async: true
+    // })
 
 })
 

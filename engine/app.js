@@ -260,6 +260,16 @@ app.post('/createAnamnesis', async (req, res) => {
   //next();
 })
 
+app.post('/listAnamnesis', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try {
+    let anamnesis = new Anamnesis("", "", "", "", "", userAddress);
+    res.send(await anamnesis.listAnamnesis(req.body["patient_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  next();
+})
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

@@ -33,10 +33,10 @@ class Anamnesis{
         }
     }
 
-    async listAnamnesis(){
+    async listAnamnesis(patientId){
         let response;
         try {
-            response = await pool.query(`SELECT * FROM anamnesis WHERE patient_id_fk = '${this.patientId}'`);
+            response = await pool.query(`SELECT * FROM anamnesis WHERE patient_id_fk = '${patientId}'`);
             return response.rows;
         }catch (error){
             return "Error while listing anamnesis";
