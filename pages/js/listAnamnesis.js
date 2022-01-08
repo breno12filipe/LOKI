@@ -140,7 +140,6 @@ function performEditChanges(anamnesis_id){
             "patient_id": localStorage.getItem("patient")
         },
 
-        
         success: function(res){
             alert(res["responseText"])
             document.location.reload(true);

@@ -35,15 +35,14 @@ function registerUser(form){
             "role": "root"
         },
         beforeSend: function () {
-            $("#login-loader").show()
-        },
-        complete: function () {
-            $("#login-loader").hide()
+            $("#login-loader").show();
         },
         success: function(res){
+            $("#login-loader").hide();
             alert(JSON.stringify(res['responseText']));
         },
         error: function(res){
+            $("#login-loader").hide();
             alert(JSON.stringify(res['responseText']));
         },
         dataType: "json",
@@ -59,14 +58,21 @@ function authenticateUser(form){
             "email": form[0].value,
             "password": form[1].value
         },
+        beforeSend: function () {
+            $("#login-loader").show()
+            
+        },
         success: function(res){
             if(typeof res['responseText'] == "undefined"){
+                $("#login-loader").hide()
                 alert("Usuário ou senha incorretos!")
             }else{
+                $("#login-loader").hide()
                 window.location.href="./dashboard/patientDashboard.html"
             }
         },
         error: function(res){
+            $("#login-loader").hide()
             console.log(JSON.stringify(res['responseText']));
             
         },

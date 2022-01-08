@@ -9,6 +9,7 @@ const User = require('./class/user')
 const Patient = require('./class/patient')
 const Bioimpedance = require('./class/bioimpedance')
 const Anamnesis = require('./class/anamnesis')
+const Exam = require('./class/exam')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json()) 
@@ -303,6 +304,20 @@ app.post('/getAnamnesisByID', async (req, res) => {
   }catch(error){
     return error;
   }
+})
+
+app.post('/createExam', async (req, res) => {
+  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  try{
+    let exam = new Anamnesis(req.body["title"], req.body["description"], 
+                                  req.body["anamnesisText"], req.body["registerDate"], 
+                                  req.body["patient_id"], userAddress);
+    res.send(await anamnesis.createAnamnesis());
+  }catch(error){
+    console.log(error)
+    return error;
+  }
+  //next();
 })
 
 app.listen(port, () => {

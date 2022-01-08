@@ -57,4 +57,40 @@ $("#exam-step4-recede").click(function(){
     $("#exam-step-3").show(1000);
 })
 
+function saveAnamnesis(){
+    var title = $("#exam-title").val();
+    var description = $("#exam-description").val();
+    var examSummernote = $("#exam-summernote").val();
+    var biochemicalSummernote = $("#biochemical-exam-summernote").val();
+    if($("#PhysicalExamRadio").prop("checked")){
+        var description = "physical_exam";
+    }else{
+        var description = "complementary_exam"
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3333/createBioimpedance",
+        data: {
+            "title": title,
+            "description": description,
+            "bioimpedanceText": text,
+            "registerDate": date,
+            "patient_id": patientID
+        },
+        success: function(res){
+            alert(res["responseText"])
+            document.location.reload(true);
+        },
+        error: function(res){
+            console.log(res)
+            alert(res["responseText"]);
+        },
+        dataType: "json",
+        async: true
+    })
+
+
+}
+
 
