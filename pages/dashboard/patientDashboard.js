@@ -23,6 +23,16 @@ function buildTable(patientsJson){
                 <tbody>
             `
     patientsJson.forEach(patient => {
+
+        // Tratando erro quando cpf inicia com digito 0, obs: não consegui 
+        // encontrar uma solução específica para com o registro no banco, estudar...
+        if (patient['cpf'].split("").length == 10){
+            var explodedCpfString = patient['cpf'].split("");
+            explodedCpfString.unshift('0');
+            patient['cpf'] = explodedCpfString.join("");
+        }
+
+
         patientTable += `<tr patientId="${patient["patient_id"]}">
                             <td>${patient['patient_name']}</td>
                             <td>${patient['phone_number']}</td>

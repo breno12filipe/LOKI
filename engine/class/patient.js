@@ -37,6 +37,7 @@ class Patient{
             response = await pool.query(createPatientQuery);
             return "Patient inserted successfully";
         }catch(error){
+            console.log(error)
             return error;
         }
        
