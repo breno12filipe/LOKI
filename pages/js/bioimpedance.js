@@ -6,6 +6,9 @@ $(document).ready(function() {
         width: 1000
     })
 
+    $('#parentEditor').find("button[data-bs-original-title='Full Screen']").hide()
+    $('#parentEditor').find("button[data-bs-original-title='Code View']").hide()
+
     // $.ajax({
     //     type: "POST",
     //     url: "http://localhost:3333/getBioimpedanceByID",

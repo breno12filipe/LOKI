@@ -6,6 +6,9 @@ $(document).ready(function() {
         height: 400,
         width: 1000
     });
+
+    $("#anamnesis-summernote").parent().find("button[data-bs-original-title='Full Screen']").hide()
+    $("#anamnesis-summernote").parent().find("button[data-bs-original-title='Code View']").hide()
 });
 
 function getCurrentDate(){
