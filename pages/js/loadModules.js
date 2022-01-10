@@ -1,22 +1,29 @@
 $( document ).ready(function() {
-    $('.side-bar').load("./components/sidebar.html").hide().fadeIn('slow');;
-    // $('.top-bar').load("../components/topbar.html");
+    //$('.side-bar').load("../components/sidebar.html").hide().fadeIn('slow');;
 
+    $(".side-bar").hide()
+    hideAllModules();
+    setTimeout(function(){ $('.side-bar').load("../components/sidebar.html").fadeIn('slow')}, 500);
+    $('.side-bar').fadeOut('slow', function(){
+        $('.side-bar').load("../components/sidebar.html", function(){
+            $('.side-bar').fadeIn('slow');
+            $('#transition').hide()
+            showModules()
+        })
+    })
+    // $('.top-bar').load("../components/topbar.html");
 })
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     var request = new XMLHttpRequest();
+function hideAllModules(){
+    $("#bioimpedance-reg-content").hide();
+    $("#anamnesis-reg-content").hide();
+    $("#list-anamnesis-module").hide();
+    $("#exam-module").hide();
+}
 
-//     request.open('GET', '../components/sidebar.html', true);
-
-//     request.onload = function() {
-//     if (request.status >= 200 && request.status < 400) {
-//         var resp = request.responseText;
-
-//         document.querySelector('.side-bar').innerHTML = resp;
-//     }
-//     };
-
-//     request.send();
-// });
-  
+function showModules(){
+    $("#bioimpedance-reg-content").show(100);
+    $("#anamnesis-reg-content").show(100);
+    $("#list-anamnesis-module").show(100);
+    $("#exam-module").show(100);
+}

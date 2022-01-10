@@ -26,11 +26,11 @@
                 <form onsubmit="return false;" class="form">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="email">
+                        <input required type="email" placeholder="email">
                     </label>
                     <label class="label-input" for="">
                         <i state="closed" id="login-eye" class="fas fa-eye-slash icon-modify" style="cursor: pointer;"></i>
-                        <input id="login-password" type="password" placeholder="senha">
+                        <input required id="login-password" type="password" placeholder="senha">
                         </label>
                         <!-- <a class="password" href="#">esqueceu sua senha?</a> -->
                         <button onclick="authenticateUser(this.form)" class="btn btn-secondary">Acessar</button>
@@ -53,11 +53,11 @@
             <form onsubmit="return false;" class="form">
                 <label class="label-input" for="">
                     <i class="far fa-envelope icon-modify"></i>
-                    <input type="email" name="email" placeholder="email">
+                    <input required type="email" name="email" placeholder="email">
                 </label>
                 <label class="label-input" for="">
-                    <i id="reg-eye" class="fas fa-eye icon-modify" style="cursor: pointer;"></i>
-                    <input type="password" name="password" placeholder="senha">
+                    <i state="closed" id="reg-eye" class="fas fa-eye-slash icon-modify" style="cursor: pointer;"></i>
+                    <input required id="reg-password" type="password" placeholder="senha">
                 </label>
                 <button type="submit" onclick="registerUser(this.form)" class="btn btn-secondary">Cadastrar</button>
             </form>
