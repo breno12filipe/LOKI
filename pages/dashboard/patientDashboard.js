@@ -64,9 +64,6 @@ function accessMedicalReport(patientID){
 
 function editPatient(patientID){
     window.location.href=`../registerPatient.html?patient_id=${patientID}`;
-    
-
-    
 }
 
 function deletePatient(patientID){

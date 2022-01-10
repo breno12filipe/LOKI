@@ -11,26 +11,7 @@ $(document).ready(function() {
     $("#anamnesis-summernote").parent().find("button[data-bs-original-title='Code View']").hide()
 });
 
-function getCurrentDate(){
-    var data = new Date();
-    var dia = String(data.getDate()).padStart(2, '0');
-    var mes = String(data.getMonth() + 1).padStart(2, '0');
-    var ano = data.getFullYear();
-    dataAtual = dia + '/' + mes + '/' + ano;
-
-    return dataAtual;
-}
-
-function formatStringDate(date) {
-    var day  = date.split("/")[0];
-    var month  = date.split("/")[1];
-    var year  = date.split("/")[2];
-    return year + '-' + ("0"+month).slice(-2) + '-' + ("0"+day).slice(-2);
-}
-
 function saveAnamnesis(){
-    console.log( $("#editor").val() );
-
     let title = $("#anamnesis-title").val();
     let description = $("#anamnesis-description").val();
     let text = $("#anamnesis-summernote").val();
@@ -48,11 +29,10 @@ function saveAnamnesis(){
             "patient_id": patientID
         },
         success: function(res){
-            alert(res["responseText"])
+            alert(res["responseText"]);
             document.location.reload(true);
         },
         error: function(res){
-            console.log(res)
             alert(res["responseText"]);
         },
         dataType: "json",
@@ -89,6 +69,3 @@ $("#anamnesis-step2-recede").click(function(){
     $("#anamnesis-step-btn-2").css('background-color', '#EFEFEF');
     $("#anamnesis-step-2").hide();
 })
-
-// desta forma conseguimos pegar o conteúdo de dentro do editor de texto rico
-//console.log($("#editor")[0].innerHTML)
