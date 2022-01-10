@@ -23,7 +23,6 @@ class Bioimpedance{
                    '${this.description}', ${this.patientId}, '${this.log}');
         `
 
-
         let response;
         try{
             response = await pool.query(createBioimpedanceQuery);
