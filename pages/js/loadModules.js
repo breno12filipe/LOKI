@@ -3,7 +3,7 @@ $( document ).ready(function() {
 
     $(".side-bar").hide()
     hideAllModules();
-    setTimeout(function(){ $('.side-bar').load("../components/sidebar.html").fadeIn('slow')}, 500);
+    setTimeout(function(){ $('.side-bar').load("./components/sidebar.html").fadeIn('slow')}, 500);
     $('.side-bar').fadeOut('slow', function(){
         $('.side-bar').load("../components/sidebar.html", function(){
             $('.side-bar').fadeIn('slow');
