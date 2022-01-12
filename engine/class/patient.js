@@ -56,7 +56,7 @@ class Patient{
     async getPatientByID(patientId){
         let response;
         try {
-            response = await pool.query(`SELECT * FROM patient WHERE patient_id = ${patientId}`);
+            response = await pool.query(`SELECT * FROM public.patient WHERE patient_id = ${patientId};`);
             return response.rows;
         }catch (error){
             return "Error while returning patient";

@@ -77,7 +77,7 @@ function buildTable(bioimpedances){
 function deleteBioimpedance(bioimpedance_id){
     if (confirm("Deseja realmente deletar a bioimpedância?")){
         $.ajax({
-            type: "POST",
+            type: "DELETE",
             url: "http://localhost:3333/deleteBioimpedance",
             data: {
                 "bioimpedance_id" : bioimpedance_id
@@ -157,7 +157,7 @@ function performEditChanges(bioimpedanceID){
     var date = formatStringDate(getCurrentDate())
 
     $.ajax({
-        type: "POST",
+        type: "PUT",
         url: "http://localhost:3333/updateBioimpedance",
         data: {
             "title": title,

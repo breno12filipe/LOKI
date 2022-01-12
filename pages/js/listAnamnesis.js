@@ -129,7 +129,7 @@ function performEditChanges(anamnesis_id){
     var date = formatStringDate(getCurrentDate())
 
     $.ajax({
-        type: "POST",
+        type: "PUT",
         url: "http://localhost:3333/updateAnamnesis",
         data: {
             "title": title,

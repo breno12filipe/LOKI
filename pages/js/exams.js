@@ -11,8 +11,6 @@ $(document).ready(function() {
         height: 400,
         width: 1000
     })
-
-    
 })
 
 $("#exam-step1-advance").click(function(){
@@ -89,8 +87,6 @@ function saveAnamnesis(){
         dataType: "json",
         async: true
     })
-
-
 }
 
 

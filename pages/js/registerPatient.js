@@ -9,7 +9,7 @@ $(document).ready(function() {
     const patientId = urlParams.get('patient_id');
 
     if (typeof patientId != "null" && patientId != null){
-        buildEditPatient(patientId)       
+        buildEditPatient(patientId)
     }
 });
 
@@ -47,7 +47,7 @@ function editPatient(form){
     const patientId = urlParams.get('patient_id');
     
     $.ajax({
-        type: "POST",
+        type: "PUT",
         url: "http://localhost:3333/updatePatient",
         data: {
             "patient_id": patientId,

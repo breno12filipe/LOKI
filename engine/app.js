@@ -5,35 +5,28 @@ const app = express()
 const port = 3333
 
 // Importing classes
-const User = require('./class/user')
-const Patient = require('./class/patient')
-const Bioimpedance = require('./class/bioimpedance')
-const Anamnesis = require('./class/anamnesis')
-const Exam = require('./class/exam')
+const User = require('./class/user');
+const Patient = require('./class/patient');
+const Bioimpedance = require('./class/bioimpedance');
+const Anamnesis = require('./class/anamnesis');
+const Exam = require('./class/exam');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json()) 
+app.use(express.json()) ;
+
+
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-  next();
+  res.send('Hello World!');
+  //next;
 })
 
 
-/*
-  {
-    "email" : "johndoe@gmail.com",
-    "password": "123456",
-    "role": "root"
-  }
-*/
 app.post('/createUser', async (req, res) => {
-  // let user = new User(req.body["email"], req.body["password"], req.body["role"]);
-  // user.registerUser();
-  let userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || // Recupera o IP de origem, caso a fonte esteja utilizando proxy
-                     req.connection.remoteAddress || // Recupera o endereço remoto da chamada
-                     req.socket.remoteAddress || // Recupera o endereço através do socket TCP
-                     req.connection.socket.remoteAddress // Recupera o endereço através do socket da conexão
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || // Recupera o IP de origem, caso a fonte esteja utilizando proxy
+                   req.connection.remoteAddress || // Recupera o endereço remoto da chamada
+                   req.socket.remoteAddress || // Recupera o endereço através do socket TCP
+                   req.connection.socket.remoteAddress
 
   try{
     let user = new User(req.body["email"], req.body["password"], req.body["role"], userAddress);
@@ -42,50 +35,45 @@ app.post('/createUser', async (req, res) => {
     res.send(e);
   }
 
-  next();
+  //next;
 })
 
 app.get('/listUsers', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try {
     let user = new User("", "", "", userAddress);
     res.send(await user.listUsers());
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
-/*
-  {
-    "user_id" : "1"
-  }
-*/
 app.get('/getUserByID', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let user = new User("", "", "", userAddress);
     res.send(await user.getUserByID(req.body["user_id"]));
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
 
-/*
-  {
-    "email" : "johndoe@gmail.com",
-    "password": "123456",
-    "role": "root",
-    "user_id": 1
-  }
-*/
-app.post('/updateUser', async (req, res) =>{
-  let userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || // Recupera o IP de origem, caso a fonte esteja utilizando proxy
-                     req.connection.remoteAddress || // Recupera o endereço remoto da chamada
-                     req.socket.remoteAddress || // Recupera o endereço através do socket TCP
-                     req.connection.socket.remoteAddress // Recupera o endereço através do socket da conexão
+app.put('/updateUser', async (req, res) =>{
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
 
   try{
     let user = new User(req.body["email"], req.body["password"], req.body["role"], userAddress);
@@ -93,28 +81,32 @@ app.post('/updateUser', async (req, res) =>{
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
-/*
-  {
-    "user_id" : "1"
-  }
-*/
-app.post('/deleteUser', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+app.delete('/deleteUser', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let user = new User("", "", "", userAddress);
     res.send(await user.deleteUser(req.body["user_id"]));
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
 
 app.post('/createPatient', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let patient = new Patient(req.body["name"], req.body["phone"],
                               req.body["birth_date"], req.body["CPF"],
@@ -125,35 +117,46 @@ app.post('/createPatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
-app.post('/deletePatient', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  try{
+app.get('/listPatients', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try {
     let patient = new Patient("", "", "", "", "", "", "","", "", "", userAddress);
-    res.send(await patient.deletePatient(req.body["patient_id"]));
+    res.send(await patient.listPatients());
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
 app.post('/getPatientByID', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try{
+    var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                     req.connection.remoteAddress || 
+                     req.socket.remoteAddress || 
+                     req.connection.socket.remoteAddress
+
     let patient = new Patient("", "", "", "", "", "", "","", "", "", userAddress);
     res.send(await patient.getPatientByID(req.body["patient_id"]));
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
-app.post('/updatePatient', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-
+app.put('/updatePatient', async (req, res) => {
+  
   try{
+    var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                     req.connection.remoteAddress || 
+                     req.socket.remoteAddress || 
+                     req.connection.socket.remoteAddress
      let patient = new Patient(req.body["name"], req.body["phone"],
                                req.body["birth_date"], req.body["CPF"],
                                req.body["RG"], req.body["CEP"], req.body["email"],
@@ -164,33 +167,45 @@ app.post('/updatePatient', async (req, res) => {
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
-app.get('/listPatients', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  try {
+app.delete('/deletePatient', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try{
     let patient = new Patient("", "", "", "", "", "", "","", "", "", userAddress);
-    res.send(await patient.listPatients());
+    res.send(await patient.deletePatient(req.body["patient_id"]));
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
 app.post('/authenticateUser', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let user = new User(req.body["email"], req.body["password"], "", userAddress);
     res.send(await user.authUser());
   }catch(error){
     return error;
   }
-  next();
+  //next;
 })
 
 app.post('/createBioimpedance', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let bioimpedance = new Bioimpedance(req.body["title"], req.body["description"], 
                                         req.body["bioimpedanceText"], req.body["registerDate"], 
@@ -203,7 +218,11 @@ app.post('/createBioimpedance', async (req, res) => {
 })
 
 app.post('/listBioimpedance', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let bioimpedance = new Bioimpedance("", "", "", "", "", userAddress);
     res.send(await bioimpedance.listBioimpedance(req.body["patient_id"]));
@@ -213,19 +232,12 @@ app.post('/listBioimpedance', async (req, res) => {
   //next();
 })
 
-app.post('/deleteBioimpedance', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  try{
-    let bioimpedance = new Bioimpedance("", "", "", "", "", userAddress);
-    res.send(await bioimpedance.deleteBioimpedance(req.body["bioimpedance_id"]));
-  }catch(error){
-    console.log(error)
-    return error;
-  }
-})
-
 app.post('/getBioimpedanceByID', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let bioimpedance = new Bioimpedance("", "", "", "", "", userAddress);
     res.send(await bioimpedance.getBioimpedanceByID(req.body["bioimpedance_id"]));
@@ -235,8 +247,12 @@ app.post('/getBioimpedanceByID', async (req, res) => {
   }
 })
 
-app.post('/updateBioimpedance', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+app.put('/updateBioimpedance', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let bioimpedance = new Bioimpedance(req.body["title"], req.body["description"], 
                                         req.body["bioimpedanceText"], req.body["registerDate"], 
@@ -247,8 +263,27 @@ app.post('/updateBioimpedance', async (req, res) => {
   }
 })
 
+app.delete('/deleteBioimpedance', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try{
+    let bioimpedance = new Bioimpedance("", "", "", "", "", userAddress);
+    res.send(await bioimpedance.deleteBioimpedance(req.body["bioimpedance_id"]));
+  }catch(error){
+    console.log(error)
+    return error;
+  }
+})
+
 app.post('/createAnamnesis', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let anamnesis = new Anamnesis(req.body["title"], req.body["description"], 
                                   req.body["anamnesisText"], req.body["registerDate"], 
@@ -262,29 +297,55 @@ app.post('/createAnamnesis', async (req, res) => {
 })
 
 app.post('/listAnamnesis', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try {
     let anamnesis = new Anamnesis("", "", "", "", "", userAddress);
     res.send(await anamnesis.listAnamnesis(req.body["patient_id"]));
   }catch(e){
     res.send(e);
   }
-  next();
+  //next;
 })
 
-app.post('/deleteAnamnesis', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+app.post('/getAnamnesisByID', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try{
+    let anamnesis = new Anamnesis("", "", "", "", "", userAddress);
+    res.send(await anamnesis.getAnamnesisByID(req.body["anamnesis_id"]));
+  }catch(error){
+    return error;
+  }
+})
+
+app.delete('/deleteAnamnesis', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try {
     let anamnesis = new Anamnesis("", "", "", "", "", userAddress);
     res.send(await anamnesis.deleteAnamnesis(req.body["anamnesis_id"]));
   }catch(e){
     res.send(e);
   }
-  next();
+  //next();
 })
 
-app.post('/updateAnamnesis', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+app.put('/updateAnamnesis', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let anamnesis = new Anamnesis(req.body["title"], req.body["description"], 
                                   req.body["anamnesisText"], req.body["registerDate"], 
@@ -296,18 +357,14 @@ app.post('/updateAnamnesis', async (req, res) => {
   }
 })
 
-app.post('/getAnamnesisByID', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  try{
-    let anamnesis = new Anamnesis("", "", "", "", "", userAddress);
-    res.send(await anamnesis.getAnamnesisByID(req.body["anamnesis_id"]));
-  }catch(error){
-    return error;
-  }
-})
+
 
 app.post('/createExam', async (req, res) => {
-  const userAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
   try{
     let exam = new Anamnesis(req.body["title"], req.body["description"], 
                                   req.body["anamnesisText"], req.body["registerDate"], 

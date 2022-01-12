@@ -50,7 +50,7 @@ function buildTable(patientsJson){
     patientTable += `</tbody></table>`;
 
     $("#patient-list").empty();
-    $("#patient-table").empty();
+    $("#patient-table").empty(); 
     
     $("#patient-list").append(patientTable);
     $("#patient-table").DataTable();
@@ -67,9 +67,9 @@ function editPatient(patientID){
 }
 
 function deletePatient(patientID){
-    if (confirm("Deseja realmente deletar o paciente?")){
+    if (confirm("Deseja realmente deletar o paciente? Todos os documentos relacionados a ele também vão ser deletados!")){
         $.ajax({
-            type: "POST",
+            type: "DELETE",
             url: "http://localhost:3333/deletePatient",
             data: {
                 "patient_id" : patientID
