@@ -23,21 +23,23 @@
             <div class="second-column">
                 <h2 class="title title-secondary">Entre com sua conta</h2>
                 <p class="description description.secondary">Use um email válido para acesso</p>
-                <form class="form" action="./dashboard/patientDashboard.html">
+                <form onsubmit="return false;" class="form">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="email">
+                        <input required type="email" placeholder="email">
                     </label>
                     <label class="label-input" for="">
-                        <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="senha">
+                        <i state="closed" id="login-eye" class="fas fa-eye-slash icon-modify" style="cursor: pointer;"></i>
+                        <input required id="login-password" type="password" placeholder="senha">
                         </label>
-                        <a class="password" href="#">esqueceu sua senha?</a>
-                        <button class="btn btn-secondary">Acessar</button>
+                        <!-- <a class="password" href="#">esqueceu sua senha?</a> -->
+                        <button onclick="authenticateUser(this.form)" class="btn btn-secondary">Acessar</button>
+                        <!-- Spinner -->
+                        <div id="login-loader" class="loader"></div> 
                 </form>
                 </div><!-- second column-->
             </div><!--first content-->
-    
+
       <div class="content second-content">
         <div class="first-column">
             <h2 class="title title-primary">Olá, usuário!</h2>
@@ -48,20 +50,22 @@
         <div class="second-column">
             <h2 class="title title-secondary">Crie sua conta</h2>
             <p class="description description-secondary">Use um email válido para cadastro</p>
-            <form class="form" action="authenticateUser(this.form)">
+            <form onsubmit="return false;" class="form">
                 <label class="label-input" for="">
                     <i class="far fa-envelope icon-modify"></i>
-                    <input type="email" placeholder="email">
+                    <input required type="email" name="email" placeholder="email">
                 </label>
                 <label class="label-input" for="">
-                    <i class="fas fa-lock icon-modify"></i>
-                    <input type="password" placeholder="senha">
+                    <i state="closed" id="reg-eye" class="fas fa-eye-slash icon-modify" style="cursor: pointer;"></i>
+                    <input required id="reg-password" type="password" placeholder="senha">
                 </label>
-                <button class="btn btn-secondary">Cadastrar</button>
+                <button type="submit" onclick="registerUser(this.form)" class="btn btn-secondary">Cadastrar</button>
             </form>
         </div><!-- second column-->   
       </div><!--second content-->
   </div><!--container-->
+
+  
   <script src="./js/index.js"></script>
 </body>
 </html>

@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/breno12filipe/LOKI#readme",
   "devDependencies": {
-    "electron": "^16.0.1"
+    "electron": "^16.0.1",
+    "electron-packager": "^15.4.0"
   },
   "dependencies": {
     "bootstrap-icons": "^1.7.1",
+    "electron-alert": "^0.1.20",
     "electron-reload": "^2.0.0-alpha.1",
     "express": "^4.17.1",
     "pg": "^8.7.1"
