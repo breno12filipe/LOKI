@@ -60,7 +60,7 @@ function buildTable(bioimpedances){
                 &nbsp;
                 <i class="bi bi-pen" title="Editar Bioimpedancia" style="cursor: pointer" onclick="editBioimpedance(${bioimpedance["bioimpedance_id"]})"></i>
                 &nbsp;
-                <i class="bi bi-trash" title="Deletar Bioimpedancia" style="cursor: pointer" onclick="deleteBioimpedance(${bioimpedance["bioimpedance_id"]})"></i>
+                <!-- <i class="bi bi-trash" title="Deletar Bioimpedancia" style="cursor: pointer" onclick="deleteBioimpedance(${bioimpedance["bioimpedance_id"]})"></i> --> 
                 </td>
         </tr>
         `;

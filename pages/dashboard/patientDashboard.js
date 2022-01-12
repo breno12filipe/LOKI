@@ -42,7 +42,7 @@ function buildTable(patientsJson){
                                 &nbsp;
                                 <i class="bi bi-pen" title="Editar Paciente" style="cursor: pointer" onclick="editPatient(${patient["patient_id"]})"></i>
                                 &nbsp;
-                                <i class="bi bi-trash" title="Deletar Paciente" style="cursor: pointer" onclick="deletePatient(${patient["patient_id"]})"></i>
+                                <!-- <i class="bi bi-power" title="Desativar Paciente" style="cursor: pointer" onclick="deletePatient(${patient["patient_id"]})"></i> -->
                             </td>
                          </tr>
         `;

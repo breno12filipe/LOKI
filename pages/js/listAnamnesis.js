@@ -62,7 +62,7 @@ function buildTable(anamnesis){
                     &nbsp;
                     <i class="bi bi-pen" title="Editar Anamnese" style="cursor: pointer" onclick="editAnamnesis(${anamnesisItem["anamnesis_id"]})"></i>
                     &nbsp;
-                    <i class="bi bi-trash" title="Deletar Anamnese" style="cursor: pointer" onclick="deleteAnamnesis(${anamnesisItem["anamnesis_id"]})"></i>
+                    <!-- <i class="bi bi-trash" title="Deletar Anamnese" style="cursor: pointer" onclick="deleteAnamnesis(${anamnesisItem["anamnesis_id"]})"></i> -->
                     </td>
             </tr>
             `;
