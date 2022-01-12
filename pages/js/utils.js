@@ -20,3 +20,27 @@ function reverseFormatStringDate(date){
     formattedStringDate = `${formattedDate[2]}/${formattedDate[1]}/${formattedDate[0]}`;
     return formattedStringDate;
 }
+
+function loadModule(url, target, method){
+    if (method == "append"){
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(res){
+                $(target).append(res)
+            },
+            dataType: "html",
+            async: false
+        })
+    }else if (method == "prepend"){
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(res){
+                $(target).prepend(res)
+            },
+            dataType: "html",
+            async: false
+        })
+    }
+}
