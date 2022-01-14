@@ -30,8 +30,6 @@
                         <button id="exam-step-btn-2" class="rounded-circle border-0 btn-lg" >2</button>
                         &nbsp;
                         <button id="exam-step-btn-3" class="rounded-circle border-0 btn-lg" >3</button>
-                        &nbsp;
-                        <button id="exam-step-btn-4" class="rounded-circle border-0 btn-lg" >4</button>
                     </div>
                 </div>
 
@@ -56,15 +54,15 @@
                                 <label for="exam-title" class="font-weight-bold">Tipo do exame</label>    
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="examRadio" id="PhysicalExamRadio">
+                                <input class="form-check-input" type="radio" name="examRadio" id="physical-exam-radio" checked>
                                 <label class="form-check-label" for="PhysicalExamRadio">
                                 Exame Físico
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="examRadio" id="ComplementaryExamRadio" checked>
-                                <label class="form-check-label" for="ComplementaryExamRadio">
-                                Exame Complementar
+                                <input class="form-check-input" type="radio" name="examRadio" id="biochemical-exam-radio">
+                                <label class="form-check-label" for="BiochemicalExamRadio">
+                                Exame Bioquímico
                                 </label>
                             </div>
                             <div class="row d-flex justify-content-center">
@@ -76,7 +74,7 @@
 
                 <div id="exam-step-2">
                     <div class="col-sm-10">
-                        <h2 class="row d-flex justify-content-center font-weight-bold">Exame</h2>
+                        <h2 class="row d-flex justify-content-center font-weight-bold" id="exam-header">Exame Físico</h2>
                     </div>
                     <div class="row d-flex justify-content-center font-weight-bold" style="position: fixed;">
                         <input type="file" id="upload" hidden/>
@@ -95,37 +93,30 @@
 
                 <div id="exam-step-3">
                     <div class="col-sm-10">
-                        <h2 class="row d-flex justify-content-center font-weight-bold">Exames Bioquímicos</h2>
-                    </div>
-                    <div class="row d-flex justify-content-center font-weight-bold" style="position:fixed;">
-                        <input type="file" id="upload" hidden/>
-                        <div id="parentEditor">
-                            <form method="post">
-                                <textarea id="biochemical-exam-summernote" name="editordata"></textarea>
-                            </form>
-                        </div>
-                        <div class="row d-flex justify-content-center mt-2 mx-auto">
-                            <button class="btn btn-warning btn-lg" style="width:100px" id="exam-step3-recede">Voltar</button>
-                            &nbsp;
-                            <button class="btn btn-info btn-lg" id="exam-step3-advance">Próximo</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="exam-step-4">
-                    <div class="col-sm-10">
                         <h2 class="row d-flex justify-content-center font-weight-bold">Salvar Exame</h2>
                     </div>
                     <div class="card ml-5 mr-5">
                         <div class="card-body">
-                            <p>Título da anamnese</p>
-                            <p>Descrição</p>
-                            <p>Tipo do exame</p>
-                            <p>PDF</p> <!-- Dar opção de baixar como PDF-->
-                            <p>Data de registro</p>
+                            <div class="col">
+                                <div class="row">
+                                    <p><b>Título do exame:</b><p id="exam-title-conf"></p></p>
+                                </div>
+                                
+                                <div class="row">
+                                    <p><b>Descrição:</b><p id="exam-desc-conf"></p></p>
+                                </div>
+
+                                <div class="row">
+                                    <p><b>Tipo do exame</b><p id="exam-type-conf"></p></p>
+                                </div>
+                                
+                                <div class="row">
+                                    <p><b>Data de registro:</b><p id="exam-title-date"></p></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="row d-flex justify-content-center mb-2 mx-auto">
-                            <button class="btn btn-warning btn-lg" id="exam-step4-recede" style="width:100px" >Voltar</button>
+                            <button class="btn btn-warning btn-lg" id="exam-step3-recede" style="width:100px" >Voltar</button>
                             &nbsp;
                             <button class="btn btn-success btn-lg" onclick="saveAnamnesis()" style="width:100px">Salvar</button>
                         </div>
@@ -137,6 +128,7 @@
     </div>
     <script src="../third/loki-rich-text-editor/editor-de-texto-html/js/jscolor.min.js"></script>
     <script src="../third/loki-rich-text-editor/editor-de-texto-html/js/editor.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/exams.js"></script>
 </body>
 </html>

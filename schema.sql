@@ -28,14 +28,16 @@ CREATE TABLE lokiuser (
 )
 
 CREATE TABLE Exam (
-    exam_id SERIAL PRIMARY KEY NOT null,
+    exam_id INT GENERATED ALWAYS AS IDENTITY,
     exam_date DATE NOT NULL,
     title VARCHAR(20) NOT NULL,
-    /* exam type can be: simple and complementary*/
+    /* exam type can be: physical and biochemical*/
     exam_type VARCHAR(13) NOT NULL,
     attachment VARCHAR(10),
-    body TEXT NOT null,
-    exam_log JSON NOT NULL
+    body TEXT NOT NULL,
+    exam_log JSON NOT NULL,
+    patient_id_fk INT REFERENCES patient(patient_id)
+    PRIMARY KEY(exam_id)
 )
 
 CREATE TABLE bioimpedance (

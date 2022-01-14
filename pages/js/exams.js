@@ -32,6 +32,11 @@ $("#exam-step2-advance").click(function(){
     $("#exam-step-btn-2").css('background-color', '#EFEFEF');
     $("#exam-step-btn-3").css('background-color', '#58af9b');
     $("#exam-step-3").show(1000);
+
+    $("#exam-title-conf").text($("#exam-title").val())
+    $("#exam-desc-conf").text($("#exam-description").val())
+    $("#exam-type-conf").text($("#exam-header").text())
+    $("#exam-title-date").text(getCurrentDate())
 })
 
 $("#exam-step3-recede").click(function(){
@@ -41,21 +46,18 @@ $("#exam-step3-recede").click(function(){
     $("#exam-step-3").hide();
 })
 
-$("#exam-step3-advance").click(function(){
-    $("#exam-step-4").show(1000);
-    $("#exam-step-btn-4").css('background-color', '#58af9b');
-    $("#exam-step-btn-3").css('background-color', '#EFEFEF');
-    $("#exam-step-3").hide();
-})
 
-$("#exam-step4-recede").click(function(){
-    $("#exam-step-4").hide();
-    $("#exam-step-btn-3").css('background-color', '#58af9b');
-    $("#exam-step-btn-4").css('background-color', '#EFEFEF');
-    $("#exam-step-3").show(1000);
-})
 
-function saveAnamnesis(){
+$("#physical-exam-radio").on("click", function() {
+    $("#exam-header").text("Exame Físico");
+});
+
+$("#biochemical-exam-radio").on("click", function() {
+    $("#exam-header").text("Exame Bioquímico");
+});
+
+
+function saveExam(){
     var title = $("#exam-title").val();
     var description = $("#exam-description").val();
     var examSummernote = $("#exam-summernote").val();
