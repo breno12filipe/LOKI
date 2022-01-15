@@ -366,16 +366,19 @@ app.post('/createExam', async (req, res) => {
                    req.connection.socket.remoteAddress
 
   try{
-    let exam = new Anamnesis(req.body["title"], req.body["description"], 
-                                  req.body["anamnesisText"], req.body["registerDate"], 
-                                  req.body["patient_id"], userAddress);
-    res.send(await anamnesis.createAnamnesis());
+    let exam = new Exam(req.body["examText"], req.body["examDate"], 
+                              req.body["title"], req.body["type"], 
+                              req.body["description"], 
+                              req.body["patientId"], userAddress);
+    res.send(await exam.createExam());
   }catch(error){
     console.log(error)
     return error;
   }
   //next();
 })
+
+
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

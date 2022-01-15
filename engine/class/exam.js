@@ -1,6 +1,6 @@
 const pool = require('../db/_connection')
 
-class exam{
+class Exam{
     constructor(examText, examDate, title, type, description, patientId){
         this.examText = examText;
         this.examDate = examDate;
@@ -30,6 +30,7 @@ class exam{
             response = await pool.query(createExamQuery);
             return "Exam inserted successfully";
         }catch(error){
+            console.log(error)
             return error;
         }
     }
@@ -98,3 +99,6 @@ class exam{
     }
 
 }
+
+
+module.exports = Exam 
