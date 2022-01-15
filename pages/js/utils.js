@@ -44,3 +44,13 @@ function loadModule(url, target, method){
         })
     }
 }
+
+function appendzeroitialCPF(cpf){
+    if (cpf.split("").length >=11 || cpf.split("").length < 10){
+        return "Error, cpf not valid for this operation!";
+    }else if (cpf.split("").length == 10){
+        var explodedCpfString = cpf.split("");
+        explodedCpfString.unshift('0');
+        return explodedCpfString.join("");
+    }
+}
