@@ -101,6 +101,8 @@ function editAnamnesis(anamnesis_id){
         height: 600
     })
 
+    $('.ui-dialog-titlebar-close').addClass('ui-icon ui-icon-closethick');
+
     $("#edit-anamnesis-summernote").summernote({
         height: 350
     })
@@ -116,6 +118,7 @@ function editAnamnesis(anamnesis_id){
         success: function(res){
             $("#edit-anamnesis-title").val(res[0]['title'])
             $("#edit-anamnesis-description").val(res[0]['anamnesis_id_description'])
+            $('#edit-anamnesis-summernote').summernote('reset');
             $('#edit-anamnesis-summernote').summernote('pasteHTML', res[0]['body']);
         },
         async: true
@@ -159,6 +162,8 @@ function AccessAnamnesis(anamnesis_id){
         height: 600
     })
 
+    $('.ui-dialog-titlebar-close').addClass('ui-icon ui-icon-closethick');
+
     $("#show-anamnesis-summernote").summernote( {
         height: 350
     })
@@ -170,10 +175,12 @@ function AccessAnamnesis(anamnesis_id){
             "patient_id" : localStorage.getItem("patient")
         },
         success: function(res){
-            $("#show-anamnesis-title").val(res[0]['title'])
-            $("#show-anamnesis-description").val(res[0]['anamnesis_description'])
-            $('#show-anamnesis-summernote').summernote('pasteHTML', res[0]['body']);
-
+            $("#show-anamnesis-title").val(res[0]['title']);
+            $("#show-anamnesis-description").val(res[0]['anamnesis_description']);
+            $('#show-anamnesis-summernote').summernote('reset');
+            $('#show-anamnesis-summernote').summernote('disable');
+            $('#show-anamnesis-summernote').summernote('pasteHTML', res[0]['body'])
+            ;
         },
         async: true
     })

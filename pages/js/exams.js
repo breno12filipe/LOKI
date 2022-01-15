@@ -62,12 +62,13 @@ function saveExam(){
     var description = $("#exam-description").val();
     var examSummernote = $("#exam-summernote").val();
     var biochemicalSummernote = $("#biochemical-exam-summernote").val();
-    if($("#PhysicalExamRadio").prop("checked")){
+    if($("#physical-exam-radio").prop("checked")){
         var description = "physical_exam";
     }else{
-        var description = "complementary_exam"
+        var description = "biochemical_exam"
     }
 
+    /*
     $.ajax({
         type: "POST",
         url: "http://localhost:3333/createBioimpedance",
@@ -89,6 +90,7 @@ function saveExam(){
         dataType: "json",
         async: true
     })
+    */
 }
 
 

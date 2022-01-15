@@ -98,6 +98,9 @@ function AccessBioimpedance(bioimpedance_id){
         width: 900,
         height: 600
     })
+    
+    $('.ui-dialog-titlebar-close').addClass('ui-icon ui-icon-closethick');
+    
 
     $("#show-bioimpedace-summernote").summernote( {
         height: 350
@@ -110,9 +113,10 @@ function AccessBioimpedance(bioimpedance_id){
             "patient_id" : localStorage.getItem("patient")
         },
         success: function(res){
-            console.log(res)
-            $("#show-bioimpedance-title").val(res[0]['title'])
-            $("#show-bioimpedance-description").val(res[0]['bioimpedance_description'])
+            $("#show-bioimpedance-title").val(res[0]['title']);
+            $("#show-bioimpedance-description").val(res[0]['bioimpedance_description']);
+            $('#show-bioimpedace-summernote').summernote('reset');
+            $('#show-bioimpedace-summernote').summernote('disable')
             $('#show-bioimpedace-summernote').summernote('pasteHTML', res[0]['body']);
 
         },
@@ -128,6 +132,8 @@ function editBioimpedance(bioimpedance_id){
         width: 900,
         height: 600
     })
+
+    $('.ui-dialog-titlebar-close').addClass('ui-icon ui-icon-closethick');
     
     $("#edit-bioimpedace-summernote").summernote({
         height: 350
@@ -144,6 +150,7 @@ function editBioimpedance(bioimpedance_id){
         success: function(res){
             $("#edit-bioimpedance-title").val(res[0]['title'])
             $("#edit-bioimpedance-description").val(res[0]['bioimpedance_description'])
+            $('#edit-bioimpedace-summernote').summernote('reset');
             $('#edit-bioimpedace-summernote').summernote('pasteHTML', res[0]['body']);
         },
         async: true
