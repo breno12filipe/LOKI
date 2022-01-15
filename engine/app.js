@@ -357,8 +357,6 @@ app.put('/updateAnamnesis', async (req, res) => {
   }
 })
 
-
-
 app.post('/createExam', async (req, res) => {
   var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
                    req.connection.remoteAddress || 
@@ -377,6 +375,22 @@ app.post('/createExam', async (req, res) => {
   }
   //next();
 })
+
+app.post('/listExams', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try {
+    let exam = new Exam("", "", "", "", "", "", userAddress);
+    res.send(await exam.listExam(req.body["patient_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  //next;
+})
+
 
 
 

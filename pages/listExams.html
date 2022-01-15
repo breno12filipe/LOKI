@@ -4,9 +4,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="../third/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../third/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="../third/Rich-Text-Editor-jQuery-RichText/src/richtext.min.css">
+    <script src="../third/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.js"></script>
+    <script src="./js/loadModules.js"></script>
+    <link rel="stylesheet" href="../third/DataTables/datatables.min.css">
+    <script src="../third/DataTables/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../third/summernote/summernote.css">
+    <title>Listar Exames</title>
 </head>
 <body>
-    
+    <div id="content">
+        <!-- Page Wrapper -->
+
+        <div id="wrapper">
+            <div class="side-bar"></div>
+            
+            <div id="list-anamnesis-module" class="card col-sm-11 mt-4 mr-4">
+                <h2 class="row d-flex justify-content-center font-weight-bold">Lista de Exames</h2>
+                <div id="exam-list"></div>
+            </div>
+        </div>
+
+        <!-- 
+        <div style="display: none;" class="col-sm-12" id="EditAnamnesisDialog" title="Editar anamnese">
+            <center>
+                <div class="row">
+                    <input id="edit-anamnesis-title" class="form-control" type="text" placeholder="titulo">
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <input id="edit-anamnesis-description" class="form-control" type="text" placeholder="descrição">
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <textarea id="edit-anamnesis-summernote" name="editordata"></textarea>
+                </div>
+                <div class="row">&nbsp;</div>
+                <button id="edit-anamnesis-submit" class="btn btn-info btn-lg">Editar</button>    
+            </center>
+        </div>
+
+        <div style="display: none;" class="col-sm-12" id="showAnamnesisDialog" title="Mostrar Anamneses">
+            <center>
+                <div class="row">
+                    <p>Titulo</p>
+                    <input id="show-anamnesis-title" class="form-control" type="text" readonly>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <p>Descrição</p>
+                    <input id="show-anamnesis-description" class="form-control" type="text" readonly>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <p>Corpo</p>
+                </div>
+                <div class="row">
+                    <textarea id="show-anamnesis-summernote" name="edit-data"></textarea>
+                </div>
+            </center>
+        </div>
+        -->
+
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../third/summernote/summernote.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/listExams.js"></script>
 </body>
 </html>
