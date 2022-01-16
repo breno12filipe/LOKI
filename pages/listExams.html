@@ -29,25 +29,36 @@
             </div>
         </div>
 
-        <!-- 
-        <div style="display: none;" class="col-sm-12" id="EditAnamnesisDialog" title="Editar anamnese">
+        <div style="display: none;" class="col-sm-12" id="EditExamDialog" title="Editar exame">
             <center>
                 <div class="row">
-                    <input id="edit-anamnesis-title" class="form-control" type="text" placeholder="titulo">
+                    <input id="edit-exam-title" class="form-control" type="text" placeholder="titulo">
                 </div>
                 <div class="row">&nbsp;</div>
                 <div class="row">
-                    <input id="edit-anamnesis-description" class="form-control" type="text" placeholder="descrição">
+                    <input id="edit-exam-description" class="form-control" type="text" placeholder="descrição">
                 </div>
                 <div class="row">&nbsp;</div>
                 <div class="row">
-                    <textarea id="edit-anamnesis-summernote" name="editordata"></textarea>
+                    <textarea id="edit-exam-summernote" name="editordata"></textarea>
                 </div>
+                <div class="form-check row">
+                    <input class="form-check-input" type="radio" name="examRadio" id="physical-exam-radio" checked>
+                    <label class="form-check-label" for="PhysicalExamRadio">
+                    Exame Físico
+                    </label>
+                </div>
+                <div class="form-check row">
+                    <input class="form-check-input" type="radio" name="examRadio" id="biochemical-exam-radio">
+                    <label class="form-check-label" for="BiochemicalExamRadio">
+                    Exame Bioquímico
+                    </label>
+                </div>
+
                 <div class="row">&nbsp;</div>
-                <button id="edit-anamnesis-submit" class="btn btn-info btn-lg">Editar</button>    
+                <button id="edit-exam-submit" class="btn btn-info btn-lg">Editar</button>    
             </center>
         </div>
-        -->
 
         <div style="display: none;" class="col-sm-12" id="showExamDialog" title="Mostrar Exame">
             <center>

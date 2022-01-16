@@ -406,6 +406,24 @@ app.post('/getExamByID', async (req, res) => {
   //next;
 })
 
+app.put('/updateExam', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try{
+    let exam = new Exam(req.body["examText"], req.body["examDate"], 
+                                  req.body["title"], req.body["type"], 
+                                  req.body["description"], 
+                                  req.body["patientId"], userAddress);
+
+    res.send(await exam.updateExam(req.body["exam_id"]));
+  }catch(error){
+    return error;
+  }
+})
+
 
 
 
