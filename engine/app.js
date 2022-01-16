@@ -391,6 +391,22 @@ app.post('/listExams', async (req, res) => {
   //next;
 })
 
+app.post('/getExamByID', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try {
+    let exam = new Exam("", "", "", "", "", "", "", userAddress);
+    res.send(await exam.getExamByID(req.body["exam_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  //next;
+})
+
+
 
 
 
