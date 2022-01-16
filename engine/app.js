@@ -357,8 +357,6 @@ app.put('/updateAnamnesis', async (req, res) => {
   }
 })
 
-
-
 app.post('/createExam', async (req, res) => {
   var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
                    req.connection.remoteAddress || 
@@ -366,16 +364,69 @@ app.post('/createExam', async (req, res) => {
                    req.connection.socket.remoteAddress
 
   try{
-    let exam = new Anamnesis(req.body["title"], req.body["description"], 
-                                  req.body["anamnesisText"], req.body["registerDate"], 
-                                  req.body["patient_id"], userAddress);
-    res.send(await anamnesis.createAnamnesis());
+    let exam = new Exam(req.body["examText"], req.body["examDate"], 
+                              req.body["title"], req.body["type"], 
+                              req.body["description"], 
+                              req.body["patientId"], userAddress);
+    res.send(await exam.createExam());
   }catch(error){
     console.log(error)
     return error;
   }
   //next();
 })
+
+app.post('/listExams', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try {
+    let exam = new Exam("", "", "", "", "", "", userAddress);
+    res.send(await exam.listExam(req.body["patient_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  //next;
+})
+
+app.post('/getExamByID', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try {
+    let exam = new Exam("", "", "", "", "", "", "", userAddress);
+    res.send(await exam.getExamByID(req.body["exam_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  //next;
+})
+
+app.put('/updateExam', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try{
+    let exam = new Exam(req.body["examText"], req.body["examDate"], 
+                                  req.body["title"], req.body["type"], 
+                                  req.body["description"], 
+                                  req.body["patientId"], userAddress);
+
+    res.send(await exam.updateExam(req.body["exam_id"]));
+  }catch(error){
+    return error;
+  }
+})
+
+
+
+
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

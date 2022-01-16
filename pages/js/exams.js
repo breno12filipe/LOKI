@@ -61,36 +61,36 @@ function saveExam(){
     var title = $("#exam-title").val();
     var description = $("#exam-description").val();
     var examSummernote = $("#exam-summernote").val();
-    var biochemicalSummernote = $("#biochemical-exam-summernote").val();
     if($("#physical-exam-radio").prop("checked")){
-        var description = "physical_exam";
-    }else{
-        var description = "biochemical_exam"
+        var type = "physical";
+    }else if ($("#biochemical-exam-radio").prop("checked")){
+        var type = "biochemical";
     }
-
-    /*
+    
     $.ajax({
         type: "POST",
-        url: "http://localhost:3333/createBioimpedance",
+        url: "http://localhost:3333/createExam",
         data: {
+            "examText": examSummernote,
+            "examDate": formatStringDate(getCurrentDate()),
             "title": title,
+            "type": type,
             "description": description,
-            "bioimpedanceText": text,
-            "registerDate": date,
-            "patient_id": patientID
+            "patientId" : localStorage.getItem("patient")
         },
         success: function(res){
             alert(res["responseText"])
             document.location.reload(true);
         },
         error: function(res){
-            console.log(res)
-            alert(res["responseText"]);
+            alert(res["responseText"])
+            document.location.reload(true);
         },
+
         dataType: "json",
         async: true
     })
-    */
+    
 }
 
 

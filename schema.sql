@@ -29,14 +29,14 @@ CREATE TABLE lokiuser (
 
 CREATE TABLE Exam (
     exam_id INT GENERATED ALWAYS AS IDENTITY,
+    body TEXT NOT NULL,
     exam_date DATE NOT NULL,
     title VARCHAR(20) NOT NULL,
     /* exam type can be: physical and biochemical*/
     exam_type VARCHAR(13) NOT NULL,
-    attachment VARCHAR(10),
-    body TEXT NOT NULL,
+    exam_description VARCHAR(45) NOT NULL,
     exam_log JSON NOT NULL,
-    patient_id_fk INT REFERENCES patient(patient_id)
+    patient_id_fk INT REFERENCES patient(patient_id),
     PRIMARY KEY(exam_id)
 )
 

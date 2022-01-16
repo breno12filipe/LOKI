@@ -54,7 +54,7 @@ function editPatient(form){
             "name": form[0].value,
             "phone": form[1].value,
             "birth_date": formatStringDate(form[2].value),
-            "CPF": form[3].value,
+            "CPF": form[3].value ,
             "RG": form[4].value,
             "CEP": form[5].value,
             "email" : form[6].value,

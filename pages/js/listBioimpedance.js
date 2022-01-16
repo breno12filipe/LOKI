@@ -93,6 +93,8 @@ function deleteBioimpedance(bioimpedance_id){
     }
 }
 
+// Funcionamento errado, não deveria buscar uma bioimpedancia em específico?
+// olhar funcionalidade no listExams.js
 function AccessBioimpedance(bioimpedance_id){
     $("#showBioimpedanceDialog").dialog({
         width: 900,
