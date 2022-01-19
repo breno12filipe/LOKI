@@ -37,3 +37,12 @@
 .loki-dropdown:hover .loki-dropdown-content {display: block;}
 
 .loki-dropdown:hover .dropbtn {background-color: #3e8e41;} 
+
+#table-content{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    
+
+    
+}
