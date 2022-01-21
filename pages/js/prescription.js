@@ -49,30 +49,44 @@ $("#prescription-step3-recede").click(function(){
 
 
 function savePrescriptions(){
+    console.logloadDocHTML()
     let title = $("#prescription-title").val();
     let description = $("#prescription-description").val();
     let text = $("#prescription-summernote").val();
     let date = formatStringDate(getCurrentDate());
     let patientID = localStorage.getItem("patient");
 
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:3333/createPrescription",
-        data: {
-            "title": title,
-            "description": description,
-            "PrescriptionText": text,
-            "registerDate": date,
-            "patient_id": patientID
-        },
-        success: function(res){
-            alert(res["responseText"])
-            document.location.reload(true);
-        },
-        error: function(res){
-            alert(res["responseText"]);
-        },
-        dataType: "json",
-        async: true
+    if ($("#nutritional-prescription-radio:checked").val()){
+        docPath = './docTemplates/nutritionalPrescription.html'
+
+    }else if ($("#medical-prescription-radio:checked").val()){
+        docPath = './docTemplates/medicalPrescription.html'
+    }
+
+    return $.get(docPath, function(html){
+        // Carrega html da prescrição na memória
+        var HTMLDoc = html
+        console.log(HTMLDoc)
     })
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "http://localhost:3333/createPrescription",
+    //     data: {
+    //         "title": title,
+    //         "description": description,
+    //         "PrescriptionText": text,
+    //         "registerDate": date,
+    //         "patient_id": patientID
+    //     },
+    //     success: function(res){
+    //         alert(res["responseText"])
+    //         document.location.reload(true);
+    //     },
+    //     error: function(res){
+    //         alert(res["responseText"]);
+    //     },
+    //     dataType: "json",
+    //     async: true
+    // })
 }
