@@ -58,16 +58,14 @@ function savePrescriptions(){
 
     if ($("#nutritional-prescription-radio:checked").val()){
         docPath = './docTemplates/nutritionalPrescription.html'
+        type="nutritional"
 
     }else if ($("#medical-prescription-radio:checked").val()){
         docPath = './docTemplates/medicalPrescription.html'
+        type="medical"
     }
 
-    return $.get(docPath, function(html){
-        // Carrega html da prescrição na memória
-        var HTMLDoc = html
-        console.log(HTMLDoc)
-    })
+    
 
     // $.ajax({
     //     type: "POST",

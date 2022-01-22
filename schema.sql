@@ -56,9 +56,22 @@ CREATE TABLE Anamnesis (
     -- attachment VARCHAR(10),
     body TEXT NOT NULL,
     register_date DATE NOT NULL,
-    title VARCHAR(20) NOT null,
+    title VARCHAR(20) NOT NULL,
     anamnesis_description VARCHAR(45) NOT NULL,
     patient_id_fk INT REFERENCES patient(patient_id),
     anamnesis_log JSON NOT NULL,
     PRIMARY KEY (anamnesis_id)
+)
+
+CREATE TABLE Prescription (
+    prescription_id INT GENERATED ALWAYS AS IDENTITY,
+    body TEXT NOT NULL,
+    register_date DATE NOT NULL,
+    title VARCHAR(20) NOT NULL,
+    prescription_description VARCHAR(45) NOT NULL,
+    prescription_type VARCHAR(30) NOT NULL,
+    docPath VARCHAR(50) NOT NULL,
+    patient_id_fk INT REFERENCES patient(patient_id),
+    prescription_log JSON NOT NULL,
+    PRIMARY KEY (prescription_id)
 )
