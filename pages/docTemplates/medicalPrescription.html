@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main-content{
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            padding:20px;
+
+        }
+
+        #issuer-identification{
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            margin-right: 100px;
+            
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #buyer-identification{
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            padding: 10px;
+        }
+
+        #provider-container{
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            padding: 10px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="main-content" class="grid-container">
+        <h1 style="text-align: center;font-size: large;">RECEITUÁRIO CONTROLE ESPECIAL</h1>
+
+        <div>
+            <div class="flex-container">
+                <div style="padding:10px" id="issuer-identification" >
+                    IDENTIFICAÇÃO DO EMITENTE
+                    <hr>
+                    Nome Completo:<br>
+                    CRM:&nbsp;&nbsp;UF:&nbsp;&nbsp;Nº<br>
+                    Endereço Completo e Telefone:<br>
+                    Cidade:&nbsp;&nbsp;UF:
+                </div>
+                <div>
+                    1ª VIA FARMÁCIA<br>
+                    2ª VIA PACIENTE
+                </div>                
+            </div>
+            <br><br>
+            Paciente:<br>
+            Endereço:<br>
+            Prescrição:<br>
+
+            <div class="flex-container">
+                <div id="buyer-identification">
+                    IDENTIFICAÇÃO DO COMPRADOR
+                    <hr>
+                    Nome:<br>
+                    Ident:&nbsp;&nbsp;Órg. Emissor<br>
+                    Cidade&nbsp;&nbsp;UF:<br>
+                    Telefone:
+
+                </div>
+                &nbsp;
+                <div id="provider-container">
+                    IDENTIFICAÇÃO DO FORNECEDOR
+                    <hr>
+                    <br><br><br><br>
+
+                    _______________________<br>
+                    ASSINATURA DO FARMACÊUTICO<br>
+                    DATA ____/____/____
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

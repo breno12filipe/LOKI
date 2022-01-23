@@ -16,3 +16,6 @@
 
 
     https://summernote.org/getting-started/
+
+## Generating executable from init.py
+pyinstaller --onefile init.py
