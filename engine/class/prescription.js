@@ -1,5 +1,8 @@
 const pool = require('../db/_connection')
 const pdf = require('html-pdf')
+const ejs = require('ejs')
+const axios = require('axios')
+
 
 class Exam{
     constructor(prescriptionText, prescriptionDate, title, type, description, patientId, docPath){
@@ -13,6 +16,11 @@ class Exam{
     }
 
     async createPrescription(){
+
+        // NOTE: This method must get the patient name and address from patient id
+        // NOTE: This method must call the generatePrescriptionDocument method
+        //       to generate the prescription document
+
         this.log = `{
             "creation_date": "${new Date().toDateString()}",
             "creator": "${this.userAddress}",
@@ -96,22 +104,43 @@ class Exam{
     async generatePrescriptionDocument(){
         // REF: https://medium.com/@hectorgrecco/gerando-pdf-a-partir-de-um-html-com-node-js-em-menos-de-5-minutos-b0a3c4b4a271
 
+        // This method is generating unique names based on 
+        // the title of the prescription and the id of the patient
+
+        // TODO: The document path might present some incompatibility with windows, "./" investigate it.
+        // TODO: Generating the document maybe should be done in the front end
         if (this.type == "medical_prescription"){
-            pdf.create(content,{}).toFile("./meuPrimeiroPdf.pdf",(err,res) => {
-                if(err){
-                    console.log(err);
+
+            // carregando ejs na memória, renderizando como html e passando variaveis
+            ejs.renderFile("./docTemplates/medicalPrescription.ejs", {patientName : "",patientAddress : "",prescriptionBody : ""}, (error, html) => {
+                if (error){
+                    console.log(error)
                 }else{
-                    console.log(res);
+                    pdf.create(html,{"directory":"./prescriptionDoc/medicalDoc"}).toFile(`./Medical${this.title.trim()}-${this.patientId}.pdf`,(err,res) => {
+                        if(err){
+                            console.log(err);
+                        }else{
+                            console.log(res);
+                        }
+                    })
                 }
             })
         }else if (this.type == "nutritional_prescription"){
-            pdf.create(content,{}).toFile("./meuPrimeiroPdf.pdf",(err,res) => {
-                if(err){
-                    console.log(err);
+
+            ejs.renderFile("./docTemplates/nutritionalPrescription.ejs", {patientName : "",patientAddress : "",prescriptionBody : ""}, (error, html) => {
+                if (error){
+                    console.log(error)
                 }else{
-                    console.log(res);
+                    pdf.create(html,{"directory":"./prescriptionDoc/nutritionalDoc"}).toFile(`Nutritional/${this.title.trim()}-${this.padientId}.pdf`,(err,res) => {
+                        if(err){
+                            console.log(err);
+                        }else{
+                            console.log(res);
+                        }
+                    })
                 }
             })
+
 
         }
     }

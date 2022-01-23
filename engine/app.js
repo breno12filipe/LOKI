@@ -424,6 +424,10 @@ app.put('/updateExam', async (req, res) => {
   }
 })
 
+app.get('/getMedicalFile', function(req, res){
+  res.sendFile(__dirname(__dirname) + './docTemplates/medicalPrescription.html')
+})
+
 
 
 

@@ -45,6 +45,7 @@
     </style>
 </head>
 <body>
+    
     <div id="main-content" class="grid-container">
         <h1 style="text-align: center;font-size: large;">RECEITUÁRIO CONTROLE ESPECIAL</h1>
 
@@ -54,26 +55,31 @@
                     IDENTIFICAÇÃO DO EMITENTE
                     <hr>
                     Nome Completo:<br>
-                    CRM:&nbsp;&nbsp;UF:&nbsp;&nbsp;Nº<br>
+                    CRM:<br>
+                    Nº:<br>
                     Endereço Completo e Telefone:<br>
-                    Cidade:&nbsp;&nbsp;UF:
+                    <br>
+                    Cidade:<br>
+                    UF:
                 </div>
                 <div>
                     1ª VIA FARMÁCIA<br>
                     2ª VIA PACIENTE
                 </div>                
             </div>
-            <br><br>
-            Paciente:<br>
-            Endereço:<br>
-            Prescrição:<br>
+            <br>
+            Paciente: <%= patientName %><br>
+            Endereço: <%= patientAddress %><br>
+            Prescrição: <%= prescriptionBody %><br>
+            <div style="padding-bottom: 300px;"></div>
 
             <div class="flex-container">
                 <div id="buyer-identification">
                     IDENTIFICAÇÃO DO COMPRADOR
                     <hr>
                     Nome:<br>
-                    Ident:&nbsp;&nbsp;Órg. Emissor<br>
+                    Ident:&nbsp;&nbsp;<br>
+                    Órg. Emissor:<br>
                     Cidade&nbsp;&nbsp;UF:<br>
                     Telefone:
 
