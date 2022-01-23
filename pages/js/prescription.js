@@ -3,7 +3,7 @@ $(document).ready(function() {
     $("#prescription-step-3").hide();
     $('#prescription-summernote').summernote({
         height: 400,
-        width: 900,
+        width: 800,
     })
 
     $('#parentEditor').find("button[data-bs-original-title='Full Screen']").hide();
