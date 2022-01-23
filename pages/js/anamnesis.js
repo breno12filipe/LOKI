@@ -11,6 +11,44 @@ $(document).ready(function() {
     $("#anamnesis-summernote").parent().find("button[data-bs-original-title='Code View']").hide()
 });
 
+$("#anamnesis-step1-advance").click(function(){
+    $("#anamnesis-step-1").hide();
+    $("#anamnesis-step-btn-1").css('background-color', '#EFEFEF');
+    $("#anamnesis-step-btn-2").css('background-color', '#58af9b');
+    $("#anamnesis-step-2").show(1000);
+})
+
+
+$("#anamnesis-step2-advance").click(function(){
+    $("#anamnesis-step-2").hide();
+    $("#anamnesis-step-btn-2").css('background-color', '#EFEFEF');
+    $("#anamnesis-step-btn-3").css('background-color', '#58af9b');
+    $("#anamnesis-step-3").show(1000);
+
+    $("#anamnesis-title-conf").empty();
+    $("#anamnesis-desc-conf").empty();
+    $("#anamnesis-title-date").empty();
+    
+    $("#anamnesis-title-conf").append(($("#anamnesis-title").val()));
+    $("#anamnesis-desc-conf").append(($("#anamnesis-description").val()));
+    $("#anamnesis-title-date").append(getCurrentDate());
+})
+
+
+$("#anamnesis-step3-recede").click(function(){
+    $("#anamnesis-step-2").show(1000);
+    $("#anamnesis-step-btn-2").css('background-color', '#58af9b');
+    $("#anamnesis-step-btn-3").css('background-color', '#EFEFEF');
+    $("#anamnesis-step-3").hide();
+})
+
+$("#anamnesis-step2-recede").click(function(){
+    $("#anamnesis-step-1").show(1000);
+    $("#anamnesis-step-btn-1").css('background-color', '#58af9b');
+    $("#anamnesis-step-btn-2").css('background-color', '#EFEFEF');
+    $("#anamnesis-step-2").hide();
+})
+
 function saveAnamnesis(){
     let title = $("#anamnesis-title").val();
     let description = $("#anamnesis-description").val();
@@ -39,33 +77,3 @@ function saveAnamnesis(){
         async: true
     })
 }
-
-$("#anamnesis-step1-advance").click(function(){
-    $("#anamnesis-step-1").hide();
-    $("#anamnesis-step-btn-1").css('background-color', '#EFEFEF');
-    $("#anamnesis-step-btn-2").css('background-color', '#58af9b');
-    $("#anamnesis-step-2").show(1000);
-})
-
-
-$("#anamnesis-step2-advance").click(function(){
-    $("#anamnesis-step-2").hide();
-    $("#anamnesis-step-btn-2").css('background-color', '#EFEFEF');
-    $("#anamnesis-step-btn-3").css('background-color', '#58af9b');
-    $("#anamnesis-step-3").show(1000);
-})
-
-
-$("#anamnesis-step3-recede").click(function(){
-    $("#anamnesis-step-2").show(1000);
-    $("#anamnesis-step-btn-2").css('background-color', '#58af9b');
-    $("#anamnesis-step-btn-3").css('background-color', '#EFEFEF');
-    $("#anamnesis-step-3").hide();
-})
-
-$("#anamnesis-step2-recede").click(function(){
-    $("#anamnesis-step-1").show(1000);
-    $("#anamnesis-step-btn-1").css('background-color', '#58af9b');
-    $("#anamnesis-step-btn-2").css('background-color', '#EFEFEF');
-    $("#anamnesis-step-2").hide();
-})

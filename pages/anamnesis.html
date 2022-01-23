@@ -82,22 +82,34 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="anamnesis-step-3" >
                     <div class="col-sm-10">
                         <h2 class="row d-flex justify-content-center font-weight-bold">Salvar Anamnese</h2>
                     </div>
-                    <div class="card ml-5 mr-5">
+                    <div class="card row d-flex justify-content-center ml-5">
                         <div class="card-body">
-                            <p>Título da anamnese</p>
-                            <p>Descrição</p>
-                            <p>PDF</p> <!-- Dar opção de baixar como PDF-->
-                            <p>Data de registro</p>
+                            
+                            <div class="col">
+                                <div class="row">
+                                    <p><b>Título da anamnese:</b><p id="anamnesis-title-conf"></p></p>
+                                </div>
+                                
+                                <div class="row">
+                                    <p><b>Descrição:</b><p id="anamnesis-desc-conf"></p></p>
+                                </div>
+    
+                                <div class="row">
+                                    <p><b>Data de registro:</b><p id="anamnesis-title-date"></p></p>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="row d-flex justify-content-center mb-2 mx-auto">
-                            <button class="btn btn-warning btn-lg" id="anamnesis-step3-recede" style="width:100px" >Voltar</button>
-                            &nbsp;
-                            <button class="btn btn-success btn-lg" onclick="saveAnamnesis()" style="width:100px">Salvar</button>
+                        <div class="col-sm-10">
+                            <div class="row d-flex justify-content-center mb-2 mx-auto">
+                                <button class="btn btn-warning btn-lg" id="anamnesis-step3-recede" style="width:100px">Voltar</button>
+                                &nbsp;
+                                <button class="btn btn-success btn-lg" onclick="saveAnamnesis()" style="width:100px">Salvar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
