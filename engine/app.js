@@ -10,9 +10,10 @@ const Patient = require('./class/patient');
 const Bioimpedance = require('./class/bioimpedance');
 const Anamnesis = require('./class/anamnesis');
 const Exam = require('./class/exam');
+const Prescription = require('./class/prescription');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json()) ;
+app.use(express.json());
 
 
 
@@ -424,8 +425,25 @@ app.put('/updateExam', async (req, res) => {
   }
 })
 
-app.get('/getMedicalFile', function(req, res){
-  res.sendFile(__dirname(__dirname) + './docTemplates/medicalPrescription.html')
+app.post('/createPrescription', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try{
+    let prescription = new Prescription(req.body["prescriptionText"],
+                            req.body["prescriptionDate"],
+                            req.body["title"], req.body["type"],
+                            req.body["description"], req.body["patientId"],
+                            req.body["docPath"], userAddress);
+
+    res.send(await prescription.createPrescription());
+  }catch(error){
+    console.log(error)
+    return error;
+  }
+  //next();
 })
 
 

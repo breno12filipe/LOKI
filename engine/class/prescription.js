@@ -4,15 +4,14 @@ const ejs = require('ejs')
 const axios = require('axios')
 
 
-class Exam{
-    constructor(prescriptionText, prescriptionDate, title, type, description, patientId, docPath){
+class Prescription{
+    constructor(prescriptionText, prescriptionDate, title, type, description, patientId){
         this.prescriptionText = prescriptionText;
         this.prescriptionDate = prescriptionDate;
         this.title = title;
         this.type = type
         this.description = description;
         this.patientId = patientId;
-        this.docPath = docPath
     }
 
     async createPrescription(){
@@ -21,6 +20,32 @@ class Exam{
         // NOTE: This method must call the generatePrescriptionDocument method
         //       to generate the prescription document
 
+
+        let Axiosresponse = await axios({
+            method: 'post',
+            url: 'http://localhost:3333/getPatientByID',
+            responseType: 'json',
+            data: {
+                patient_id : this.patientId
+            }
+        })
+
+        if (this.type == "medical"){
+            var res = await this.generatePrescriptionDocument({
+                patientName : Axiosresponse.data[0].patient_name,
+                patientAddress: Axiosresponse.data[0].patient_address,
+                body: this.prescriptionText
+            })
+            this.docPath = res
+        }else if (this.type == "nutritional"){
+            var res = await this.generatePrescriptionDocument({
+                patientName : Axiosresponse.data[0].patient_name,
+                body: this.prescriptionText
+            })
+            this.docPath = res
+        }
+
+        
         this.log = `{
             "creation_date": "${new Date().toDateString()}",
             "creator": "${this.userAddress}",
@@ -44,6 +69,7 @@ class Exam{
             console.log(error)
             return error;
         }
+        
     }
 
     async listPrescription(patientId){
@@ -101,51 +127,41 @@ class Exam{
     }
 
 
-    async generatePrescriptionDocument(){
+    async generatePrescriptionDocument(data){
         // REF: https://medium.com/@hectorgrecco/gerando-pdf-a-partir-de-um-html-com-node-js-em-menos-de-5-minutos-b0a3c4b4a271
 
         // This method is generating unique names based on 
         // the title of the prescription and the id of the patient
-
-        // TODO: The document path might present some incompatibility with windows, "./" investigate it.
-        // TODO: Generating the document maybe should be done in the front end
-        if (this.type == "medical_prescription"){
-
+        // TODO: The document path may present some incompatibility with windows, "./" investigate it.
+        if (this.type == "medical"){
             // carregando ejs na memória, renderizando como html e passando variaveis
-            ejs.renderFile("./docTemplates/medicalPrescription.ejs", {patientName : "",patientAddress : "",prescriptionBody : ""}, (error, html) => {
-                if (error){
-                    console.log(error)
-                }else{
-                    pdf.create(html,{"directory":"./prescriptionDoc/medicalDoc"}).toFile(`./Medical${this.title.trim()}-${this.patientId}.pdf`,(err,res) => {
-                        if(err){
-                            console.log(err);
-                        }else{
-                            console.log(res);
-                        }
-                    })
-                }
-            })
-        }else if (this.type == "nutritional_prescription"){
 
-            ejs.renderFile("./docTemplates/nutritionalPrescription.ejs", {patientName : "",patientAddress : "",prescriptionBody : ""}, (error, html) => {
-                if (error){
-                    console.log(error)
+            const html = await ejs.renderFile("./docTemplates/medicalPrescription.ejs", {patientName : data.patientName,patientAddress : data.patientAddress ,prescriptionBody : data.body}, {async: true})
+            await pdf.create(html,{"directory":"./prescriptionDoc/medicalDoc"}).toFile(`./prescriptionDoc/medicalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`,(err,res) => {
+                if(err){
+                    console.log(err);
                 }else{
-                    pdf.create(html,{"directory":"./prescriptionDoc/nutritionalDoc"}).toFile(`Nutritional/${this.title.trim()}-${this.padientId}.pdf`,(err,res) => {
-                        if(err){
-                            console.log(err);
-                        }else{
-                            console.log(res);
-                        }
-                    })
+                    //console.log("Medical Document created successfully!")
                 }
             })
 
+            return `./prescriptionDoc/medicalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`            
+        }else if (this.type == "nutritional"){
+            const html = await ejs.renderFile("./docTemplates/nutritionalPrescription.ejs", {patientName : data.patientName, prescriptionBody : data.body}, {async: true});
+            await pdf.create(html,{"directory":"./prescriptionDoc/nutritionalDoc"}).toFile(`./prescriptionDoc/nutritionalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`,(err,res) => {
+                if(err){
+                    console.log(err);
+                }else{
+                    //console.log("Nutritional Document created successfully!")
+                }
+            })
 
+            return `./prescriptionDoc/nutritionalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`
         }
+        
     }
 
 }
 
 
-module.exports = Exam 
+module.exports = Prescription 
