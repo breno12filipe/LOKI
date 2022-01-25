@@ -52,6 +52,7 @@ class Prescription{
             "operation": "create_prescription"
         }`;
         
+        console.log(this.prescriptionDate)
         let createPrescriptionQuery = `
             INSERT INTO public.prescription
             (body, register_date, title, prescription_description, 

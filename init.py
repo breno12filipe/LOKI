@@ -12,7 +12,7 @@ def start_express_server():
 
 def start_electron_instance():
     if so == 'Linux':
-        os.system('cd ../engine && npm start')
+        os.system('cd ./engine && npm start')
     elif so == 'Windows':
         os.system('cd ..\engine && npm start')
 

@@ -436,8 +436,7 @@ app.post('/createPrescription', async (req, res) => {
                             req.body["prescriptionDate"],
                             req.body["title"], req.body["type"],
                             req.body["description"], req.body["patientId"],
-                            req.body["docPath"], userAddress);
-
+                            userAddress);
     res.send(await prescription.createPrescription());
   }catch(error){
     console.log(error)

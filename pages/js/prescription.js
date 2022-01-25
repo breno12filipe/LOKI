@@ -48,8 +48,7 @@ $("#prescription-step3-recede").click(function(){
 })
 
 
-function savePrescriptions(){
-    console.logloadDocHTML()
+function savePrescription(){
     let title = $("#prescription-title").val();
     let description = $("#prescription-description").val();
     let text = $("#prescription-summernote").val();
@@ -65,26 +64,27 @@ function savePrescriptions(){
         type="medical"
     }
 
-    
+    $.ajax({
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: "http://localhost:3333/createPrescription",
-    //     data: {
-    //         "title": title,
-    //         "description": description,
-    //         "PrescriptionText": text,
-    //         "registerDate": date,
-    //         "patient_id": patientID
-    //     },
-    //     success: function(res){
-    //         alert(res["responseText"])
-    //         document.location.reload(true);
-    //     },
-    //     error: function(res){
-    //         alert(res["responseText"]);
-    //     },
-    //     dataType: "json",
-    //     async: true
-    // })
+        type: "POST",
+        url: "http://localhost:3333/createPrescription",
+        data: {
+            "prescriptionText": text,
+            "title": title,
+            "description": description,
+            "type": type,
+            "PrescriptionText": text,
+            "prescriptionDate": date,
+            "patientId": patientID
+        },
+        success: function(res){
+            alert(res["responseText"])
+            document.location.reload(true);
+        },
+        error: function(res){
+            alert(res["responseText"]);
+        },
+        dataType: "json",
+        async: true
+    })
 }
