@@ -446,6 +446,22 @@ app.post('/createPrescription', async (req, res) => {
 })
 
 
+app.post('/listPrescription', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try {
+    let prescription = new Prescription("","","","", "",userAddress);
+    res.send(await prescription.listPrescription(req.body["patient_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  //next;
+})
+
+
 
 
 

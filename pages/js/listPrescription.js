@@ -37,6 +37,7 @@ function reverseFormatStringDate(date){
     return formattedStringDate;
 }
 
+//Colocar-icone-PDF-nas-operações HeadMistress;
 function buildTable(prescriptions){
     prescriptionTable = `<table id="prescription-table">
                 <thead>
@@ -45,7 +46,6 @@ function buildTable(prescriptions){
                         <th>Descrição</th>
                         <th>Data de registro</th>
                         <th>Operações</th> 
-    //Colocar-icone-PDF-nas-operações HeadMistress;
                     </tr>
                 </thead>
                 <tbody>
@@ -71,7 +71,7 @@ function buildTable(prescriptions){
     $("#prescription-list").empty();
     $("#prescription-table").empty();
     
-    $("#prescription-list").append(bioimpedanceTable);
+    $("#prescription-list").append(prescriptionTable);
     $("#prescription-table").DataTable();
 }
 
