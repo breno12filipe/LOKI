@@ -134,6 +134,7 @@ class Prescription{
         // This method is generating unique names based on 
         // the title of the prescription and the id of the patient
         // TODO: The document path may present some incompatibility with windows, "./" investigate it.
+        // TODO: O corpo do documento vem com as tags html, achar uma maneira de retirar
         if (this.type == "medical"){
             // carregando ejs na memória, renderizando como html e passando variaveis
 

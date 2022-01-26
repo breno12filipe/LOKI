@@ -21,3 +21,23 @@
     cursor: pointer;
 }
 
+#welcome-msg{
+    animation-duration: 3s;
+    animation-name: slidein;
+    text-align: center;
+    font-weight: bolder !important;
+}
+
+@keyframes slidein {
+    from {
+      margin-top: 0%;
+      width: 300%
+    }
+  
+    to {
+      margin-top: 0%;
+      width: 100%;
+    }
+  }
+  
+
