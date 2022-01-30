@@ -205,10 +205,10 @@ class Prescription{
                 }
             })
 
-            return `./prescriptionDoc/medicalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`            
+            return `./prescriptionDoc/medicalDoc/${data.patientName.replace(/\s/g, '')}/${this.title.replace(/\s/g, '')}.pdf`            
         }else if (this.type == "nutritional"){
             const html = await ejs.renderFile("./docTemplates/nutritionalPrescription.ejs", {patientName : data.patientName, prescriptionBody : data.body}, {async: true});
-            await pdf.create(html,{"directory":"./prescriptionDoc/nutritionalDoc"}).toFile(`./prescriptionDoc/nutritionalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`,(err,res) => {
+            await pdf.create(html,{"directory":"./prescriptionDoc/nutritionalDoc"}).toFile(`./prescriptionDoc/nutritionalDoc/${data.patientName.replace(/\s/g, '')}/${this.title.trim()}.pdf`,(err,res) => {
                 if(err){
                     console.log(err);
                 }else{
@@ -216,7 +216,7 @@ class Prescription{
                 }
             })
 
-            return `./prescriptionDoc/nutritionalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`
+            return `./prescriptionDoc/nutritionalDoc/${data.patientName.replace(/\s/g, '')}/${this.title.replace(/\s/g, '')}.pdf`
         }
         
     }

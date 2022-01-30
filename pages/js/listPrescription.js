@@ -32,7 +32,7 @@ function buildTable(prescriptions){
             <td>${prescription['prescription_description']}</td>
             <td>${reverseFormatStringDate(prescription['register_date'])}</td>
             <td>
-                <i class="bi bi-file-pdf" title="Baixar Documento" style="cursor: pointer" onclick="downloadPrescription(${prescription["prescription_id"]})"></i>
+                <i class="bi bi-file-bar-graph" title="Ver Prescrição" style="cursor: pointer" onclick="openPrescription(${prescription["prescription_id"]})"></i>
                 &nbsp;
                 <i class="bi bi-pen" title="Editar Prescrição" style="cursor: pointer" onclick="editPrescription(${prescription["prescription_id"]})"></i>
                 &nbsp;
@@ -50,9 +50,10 @@ function buildTable(prescriptions){
     $("#prescription-table").DataTable();
 }
 
-function downloadPrescription(prescription_id){
-    console.log(prescription_id)
-    /*
+
+
+function openPrescription(prescription_id){
+
     $("#showPrescriptionDialog").dialog({
         width: 900,
         height: 600
@@ -61,19 +62,19 @@ function downloadPrescription(prescription_id){
     $('.ui-dialog-titlebar-close').addClass('ui-icon ui-icon-closethick');
     
 
-    $("#show-bioimpedace-summernote").summernote( {
+    $("#show-prescription-summernote").summernote( {
         height: 350
     })
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:3333/listPrescription",
+        url: "http://localhost:3333/getPrescriptionByID",
         data: {
-            "patient_id" : localStorage.getItem("patient")
+            "prescription_id" : prescription_id
         },
         success: function(res){
             $("#show-prescription-title").val(res[0]['title']);
-            $("#show-prescription-description").val(res[0]['bioimpedance_description']);
+            $("#show-prescription-description").val(res[0]['prescription_description']);
             $('#show-prescription-summernote').summernote('reset');
             $('#show-prescription-summernote').summernote('disable')
             $('#show-prescription-summernote').summernote('pasteHTML', res[0]['body']);
@@ -81,7 +82,6 @@ function downloadPrescription(prescription_id){
         },
         async: true
     })
-    */
 }
 
 function editPrescription(prescription_id){

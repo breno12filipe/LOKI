@@ -497,8 +497,8 @@ app.put('/updatePrescription', async (req, res) => {
   }
 })
 
-app.get('/downloadPrescription', function(req, res){
-  const file = `${__dirname}/upload-folder/dramaticpenguin.MOV`;
+app.post('/downloadPrescription', function(req, res){
+  const file = `${req.body["document_dir"]}`;
   res.download(file); // Set disposition and send it.
 });
 
