@@ -462,7 +462,45 @@ app.post('/listPrescription', async (req, res) => {
 })
 
 
+app.post('/getPrescriptionByID', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
 
+  try {
+    let prescription = new Prescription("","","","", "",userAddress);
+    res.send(await prescription.getPrescriptionByID(req.body["prescription_id"]));
+  }catch(e){
+    res.send(e);
+  }
+  //next;
+})
+
+
+app.put('/updatePrescription', async (req, res) => {
+  var userAddress = (req.headers['x-forwarded-for'] || '').split(',').pop() || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress || 
+                   req.connection.socket.remoteAddress
+
+  try{
+    let prescription = new Prescription(req.body["prescriptionText"],
+                            req.body["registerDate"],
+                            req.body["title"], req.body["type"],
+                            req.body["description"], req.body["patientId"],
+                            userAddress);
+
+    res.send(await prescription.updatePrescription(req.body["prescription_id"]));
+  }catch(error){
+    return error;
+  }
+})
+
+app.get('/downloadPrescription', function(req, res){
+  const file = `${__dirname}/upload-folder/dramaticpenguin.MOV`;
+  res.download(file); // Set disposition and send it.
+});
 
 
 app.listen(port, () => {

@@ -24,25 +24,37 @@
             </div>
         </div>
 
-        <!--
-        <div style="display: none;" class="col-sm-12" id="EditBioimpedanceDialog" title="Editar bioimpedancia">
+        
+        <div style="display: none;" class="col-sm-12" id="EditPrescriptionDialog" title="Editar Prescrição">
             <center>
                 <div class="row">
-                    <input id="edit-bioimpedance-title" class="form-control" type="text" placeholder="titulo">
+                    <input id="edit-prescription-title" class="form-control" type="text" placeholder="titulo">
                 </div>
                 <div class="row">&nbsp;</div>
                 <div class="row">
-                    <input id="edit-bioimpedance-description" class="form-control" type="text" placeholder="descrição">
+                    <input id="edit-prescription-description" class="form-control" type="text" placeholder="descrição">
                 </div>
                 <div class="row">&nbsp;</div>
                 <div class="row">
-                    <textarea id="edit-bioimpedace-summernote" name="editordata"></textarea>
+                    <textarea id="edit-prescription-summernote" name="editordata"></textarea>
                 </div>
                 <div class="row">&nbsp;</div>
-                <button id="edit-bioimpedance-submit" class="btn btn-info btn-lg">Editar</button>    
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prescriptionRadio" id="nutritional-prescription-radio" checked>
+                    <label class="form-check-label" for="NutritionalPrescriptionRadio">
+                    Receituário Nutricional
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prescriptionRadio" id="medical-prescription-radio">
+                    <label class="form-check-label" for="MedicalPrescriptionRadio">
+                    Receituário Especial Médico
+                    </label>
+                </div>
+                <button id="edit-prescription-submit" class="btn btn-info btn-lg">Editar</button>    
             </center>
         </div>
-
+        <!-- 
         <div style="display: none;" class="col-sm-12" id="showBioimpedanceDialog" title="Mostrar bioimpedancia">
             <center>
                 <div class="row">
@@ -70,6 +82,7 @@
     <script type="text/javascript" src="../third/jquery-3.6.0/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="./js/loadModules.js"></script>
+    <script type="text/javascript" src="./js/utils.js"></script>
     <script type="text/javascript" src="./js/listPrescription.js"></script>
     <script type="text/javascript" src="../third/DataTables/datatables.min.js" defer ></script>
     <script src="../third/summernote/summernote.js"></script>

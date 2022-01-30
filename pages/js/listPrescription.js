@@ -12,31 +12,6 @@ $(document).ready(function() {
     })
 });
 
-function getCurrentDate(){
-    var data = new Date();
-    var dia = String(data.getDate()).padStart(2, '0');
-    var mes = String(data.getMonth() + 1).padStart(2, '0');
-    var ano = data.getFullYear();
-    dataAtual = dia + '/' + mes + '/' + ano;
-
-    return dataAtual;
-}
-
-function formatStringDate(date) {
-    var day  = date.split("/")[0];
-    var month  = date.split("/")[1];
-    var year  = date.split("/")[2];
-    return year + '-' + ("0"+month).slice(-2) + '-' + ("0"+day).slice(-2);
-}
-
-
-function reverseFormatStringDate(date){
-    let formattedDate = String(date.split("T").splice(0, 1));
-    formattedDate = formattedDate.split("-");
-    formattedStringDate = `${formattedDate[2]}/${formattedDate[1]}/${formattedDate[0]}`;
-    return formattedStringDate;
-}
-
 //Colocar-icone-PDF-nas-operações HeadMistress;
 function buildTable(prescriptions){
     prescriptionTable = `<table id="prescription-table">
@@ -57,12 +32,12 @@ function buildTable(prescriptions){
             <td>${prescription['prescription_description']}</td>
             <td>${reverseFormatStringDate(prescription['register_date'])}</td>
             <td>
-                <i class="bi bi-file-bar-graph" title="Ver Prescrição" style="cursor: pointer" onclick="AccessPrescription(${prescription["prescription_id"]})"></i>
+                <i class="bi bi-file-pdf" title="Baixar Documento" style="cursor: pointer" onclick="downloadPrescription(${prescription["prescription_id"]})"></i>
                 &nbsp;
                 <i class="bi bi-pen" title="Editar Prescrição" style="cursor: pointer" onclick="editPrescription(${prescription["prescription_id"]})"></i>
                 &nbsp;
                 <!-- <i class="bi bi-trash" title="Deletar Prescrição" style="cursor: pointer" onclick="deletePrescription(${prescription["prescription_id"]})"></i> --> 
-                </td>
+            </td>
         </tr>
         `;
     });
@@ -75,26 +50,9 @@ function buildTable(prescriptions){
     $("#prescription-table").DataTable();
 }
 
-function deleteBioimpedance(prescription_id){
-    if (confirm("Deseja realmente deletar a Prescrição?")){
-        $.ajax({
-            type: "DELETE",
-            url: "http://localhost:3333/deletePrescription",
-            data: {
-                "prescription_id" : prescription_id
-            },
-            success: function(res){
-                alert(res)
-                document.location.reload(true);
-            },
-            async: true
-        })
-    }else{
-        console.log("a")
-    }
-}
-
-function AccessPrescription(prescription_id){
+function downloadPrescription(prescription_id){
+    console.log(prescription_id)
+    /*
     $("#showPrescriptionDialog").dialog({
         width: 900,
         height: 600
@@ -123,6 +81,7 @@ function AccessPrescription(prescription_id){
         },
         async: true
     })
+    */
 }
 
 function editPrescription(prescription_id){
@@ -158,12 +117,22 @@ function editPrescription(prescription_id){
     })
 }
 
-function performEditChanges(Prescription_ID){
+function performEditChanges(PrescriptionID){
     var title = $("#edit-prescription-title").val()
     var description = $("#edit-prescription-description").val()
     var body = $('#edit-prescription-summernote').val()
     var date = formatStringDate(getCurrentDate())
 
+    if ($("#nutritional-prescription-radio:checked").val()){
+        docPath = './docTemplates/nutritionalPrescription.html'
+        type="nutritional"
+
+    }else if ($("#medical-prescription-radio:checked").val()){
+        docPath = './docTemplates/medicalPrescription.html'
+        type="medical"
+    }
+
+    // não está conseguindo atualizar
     $.ajax({
         type: "PUT",
         url: "http://localhost:3333/updatePrescription",
@@ -172,8 +141,12 @@ function performEditChanges(Prescription_ID){
             "description": description,
             "prescriptionText": body,
             "registerDate": date,
+            "prescription_id": PrescriptionID,
+            "patientId" : localStorage.getItem("patient"),
+            "type": type,
             "prescription_id": PrescriptionID
         },
+        
         success: function(res){
             alert(res["responseText"])
             document.location.reload(true);

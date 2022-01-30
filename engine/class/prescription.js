@@ -2,6 +2,7 @@ const pool = require('../db/_connection')
 const pdf = require('html-pdf')
 const ejs = require('ejs')
 const axios = require('axios')
+const fs = require('fs')
 
 
 class Prescription{
@@ -94,6 +95,7 @@ class Prescription{
         }
     }
 
+    // TODO: O editar precisa deletar o antigo documento e criar um novo. by HeadMaster
     async updatePrescription(prescriptionId){
         this.log = `{
             "creation_date": "${new Date().toDateString()}",
@@ -101,6 +103,60 @@ class Prescription{
             "operation": "update_prescription"
         }`;
 
+        let Axiosresponse = await axios({
+            method: 'post',
+            url: 'http://localhost:3333/getPrescriptionByID',
+            responseType: 'json',
+            data: {
+                prescription_id : prescriptionId
+            }
+        })
+
+        let AxiosPatientResponse = await axios({
+            method: 'post',
+            url: 'http://localhost:3333/getPatientByID',
+            responseType: 'json',
+            data: {
+                patient_id : this.patientId
+            }
+        })
+        
+        
+        // Montando o caminho do diretório...
+        if (Axiosresponse.data[0]['prescription_type'] == "nutritional"){
+            var mountedDirPath = `./prescriptionDoc/nutritionalDoc/${AxiosPatientResponse.data[0]['patient_name'].replace(/\s/g, '')}/${Axiosresponse.data[0]['title']}.pdf`;
+        }else if (Axiosresponse.data[0]['prescription_type'] == "medical"){
+            var mountedDirPath = `./prescriptionDoc/medicalDoc/${AxiosPatientResponse.data[0]['patient_name'].replace(/\s/g, '')}/${Axiosresponse.data[0]['title']}.pdf`;
+        }
+
+        try{
+            fs.unlinkSync(mountedDirPath);
+            console.log("successfully deleted" + mountedDirPath);
+        }catch( error ){
+            console.error("there was an error", error.message);
+        }
+
+        if (this.type == "medical"){
+            var res = await this.generatePrescriptionDocument({
+                patientName : AxiosPatientResponse.data[0].patient_name,
+                patientAddress: AxiosPatientResponse.data[0].patient_address,
+                body: this.prescriptionText
+            })
+            this.docPath = res
+        }else if (this.type == "nutritional"){
+            var res = await this.generatePrescriptionDocument({
+                patientName : AxiosPatientResponse.data[0].patient_name,
+                body: this.prescriptionText
+            })
+            this.docPath = res
+        }
+        
+
+
+        // Deletar antigo documento, preciso pegar o titulo do antigo documento
+        // criar um novo documento com os novos dados e aí sim editar os dados 
+
+        
         let updatePrescriptionQuery = ` UPDATE public.prescription
                                 SET body='${this.prescriptionText}', register_date='${this.prescriptionDate}',
                                 title='${this.title}', prescription_description='${this.description}', 
@@ -113,8 +169,10 @@ class Prescription{
             response = await pool.query(updatePrescriptionQuery);
             return {"responseText" : "prescription updated successfully"};
         }catch(error){
+            console.log(error)
             return {"responseText" : "Error while updating prescription"};
         }
+        
     }
 
     async deletePrescription(prescriptionId){
@@ -139,7 +197,7 @@ class Prescription{
             // carregando ejs na memória, renderizando como html e passando variaveis
 
             const html = await ejs.renderFile("./docTemplates/medicalPrescription.ejs", {patientName : data.patientName,patientAddress : data.patientAddress ,prescriptionBody : data.body}, {async: true})
-            await pdf.create(html,{"directory":"./prescriptionDoc/medicalDoc"}).toFile(`./prescriptionDoc/medicalDoc/${data.patientName.trim()}/${this.title.trim()}.pdf`,(err,res) => {
+            await pdf.create(html,{"directory":"./prescriptionDoc/medicalDoc"}).toFile(`./prescriptionDoc/medicalDoc/${data.patientName.replace(/\s/g, '')}/${this.title.trim()}.pdf`,(err,res) => {
                 if(err){
                     console.log(err);
                 }else{

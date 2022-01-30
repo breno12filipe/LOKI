@@ -109,3 +109,6 @@ dist
 __pycache__
 build/
 dist/
+
+# Medical Documents Directory
+engine/prescriptionDoc
