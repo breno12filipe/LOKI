@@ -110,9 +110,9 @@ function AccessBioimpedance(bioimpedance_id){
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:3333/listBioimpedance",
+        url: "http://localhost:3333/getBioimpedanceByID",
         data: {
-            "patient_id" : localStorage.getItem("patient")
+            "bioimpedance_id" : bioimpedance_id
         },
         success: function(res){
             $("#show-bioimpedance-title").val(res[0]['title']);
