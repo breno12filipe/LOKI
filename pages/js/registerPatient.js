@@ -22,11 +22,20 @@ function buildEditPatient(patientId){
             "patient_id" : patientId
         },
         success: function(res){
+            cpf = res[0]['cpf']
+            if (cpf.split("").length == 10){
+                var explodedCpfString = cpf.split("");
+                explodedCpfString.unshift('0');
+                var cpf = explodedCpfString.join("");
+            }else{
+                var cpf = form[4]
+            }
+
             $("#patientTitle").text("Editar paciente");
             $("#patientName").val(res[0]['patient_name'])
             $("#telInput").val(res[0]['phone_number']);
             $("#dtInput").val(reverseFormatStringDate(res[0]['birth_date']));
-            $("#CPFInput").val(res[0]['cpf']);
+            $("#CPFInput").val(cpf);
             $("#RGInput").val(res[0]['rg']);
             $("#CEPInput").val(res[0]['cep']);
             $("#patientEmail").val(res[0]['email']);
@@ -45,7 +54,7 @@ function buildEditPatient(patientId){
 function editPatient(form){
     const urlParams = new URLSearchParams(window.location.search);
     const patientId = urlParams.get('patient_id');
-    
+
     $.ajax({
         type: "PUT",
         url: "http://localhost:3333/updatePatient",
